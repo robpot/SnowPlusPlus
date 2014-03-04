@@ -1,17 +1,11 @@
 //animation.cpp
+#include "animationFrame.h"
 
-#ifndef ANIMATIONFRAME_H
-#define ANIMATIONFRAME_H
+animationFrame::animationFrame(QWidget *p) : QWidget(p){
+   setFixedSize(1024,576);
+}
 
-#include <QWidget>
-#include <QPainter>
-
-class animationFrame : public QWidget {
-   Q_OBJECT
-public:
-   animationFrame(QWidget *p=0);
-protected:
-   void paintEvent(QPaintEvent *);
-};
-
-#endif
+void animationFrame::paintEvent(QPaintEvent *){
+   QPainter paint(this);
+   paint.drawRect(1,1,width()-2,height()-2);
+}
