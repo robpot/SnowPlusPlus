@@ -2,16 +2,18 @@
 #define BLOCKPALETTE_H
 
 #include <QWidget>
+#include <QPainter>
 #include "codeBlock.h"
 
-class BlockPalette :public QWidget{
+class blockPalette :public QWidget{
     Q_OBJECT
 
 public:
-    BlockPalette(QWidget *parent=0);
-
+    blockPalette(QWidget *parent=0);
+  protected:
+    void paintEvent(QPaintEvent *);
 private:
-    QList<CodeBlock*> blocks;
+    QList<codeBlock*> blocks;
 };
 
 #endif
