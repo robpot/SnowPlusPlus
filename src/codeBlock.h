@@ -2,12 +2,17 @@
 #define CODEBLOCK_H
 
 #include <QWidget>
+#include <QString>
+#include <QPainter>
 
-class CodeBlock :public QWidget{
+class codeBlock :public QWidget{
     Q_OBJECT
 
 public:
-    CodeBlock(QString textVal="",int blockId=0, QWidget *parent=0);
+   codeBlock(QString textVal="",int blockId=0, QWidget *parent=0);
+   
+protected:
+   void paintEvent(QPaintEvent *e);
 };
 
 
