@@ -9,7 +9,7 @@ class scorebox :public QWidget{
     Q_OBJECT
 
 public:
-   scorebox(QString textVal="",int blockId=0, QWidget *parent=0);
+   scorebox(QWidget *parent=0);
    
 protected:
    void paintEvent(QPaintEvent *e);

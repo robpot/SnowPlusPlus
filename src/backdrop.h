@@ -9,7 +9,7 @@ class backdrop :public QWidget{
     Q_OBJECT
 
 public:
-   backdrop(QString textVal="",int blockId=0, QWidget *parent=0);
+   backdrop(QWidget *parent=0);
    
 protected:
    void paintEvent(QPaintEvent *e);

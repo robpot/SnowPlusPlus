@@ -2,7 +2,7 @@
 
 #include "scorebox.h"
 
-scorebox::scorebox(QString textval, int blockId, QWidget *parent) : QWidget(parent){
+scorebox::scorebox(QWidget *parent) : QWidget(parent){
    setFixedSize(204,58);
 }
 

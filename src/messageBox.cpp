@@ -2,7 +2,7 @@
 
 #include "messageBox.h"
 
-messageBox::messageBox(QString textval, int blockId, QWidget *parent) : QWidget(parent){
+messageBox::messageBox(QWidget *parent) : QWidget(parent){
    setFixedSize(616,115);
 }
 

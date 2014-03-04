@@ -2,7 +2,7 @@
 
 #include "backdrop.h"
 
-backdrop::backdrop(QString textval, int blockId, QWidget *parent) : QWidget(parent){
+backdrop::backdrop(QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
 }
 

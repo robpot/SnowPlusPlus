@@ -9,7 +9,7 @@ class snowman :public QWidget{
     Q_OBJECT
 
 public:
-   snowman(QString textVal="",int blockId=0, QWidget *parent=0);
+   snowman(QWidget *parent=0);
    
 protected:
    void paintEvent(QPaintEvent *e);

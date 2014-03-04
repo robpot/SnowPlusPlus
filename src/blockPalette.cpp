@@ -1,7 +1,7 @@
 //blockPalette.cpp
 #include "blockpalette.h"
 
-blockplatte::blockPalette(QWidget *parent){
+blockPalette::blockPalette(QWidget *parent){
    setFixedSize(205, 576);
 }
 void blockPalette::paintEvent(QPaintEvent *){

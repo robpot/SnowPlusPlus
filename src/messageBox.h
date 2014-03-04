@@ -9,7 +9,7 @@ class messageBox :public QWidget{
     Q_OBJECT
 
 public:
-   messageBox(QString textVal="",int blockId=0, QWidget *parent=0);
+   messageBox(QWidget *parent=0);
    
 protected:
    void paintEvent(QPaintEvent *e);

@@ -2,7 +2,7 @@
 
 #include "snowman.h"
 
-snowman::snowman(QString textval, int blockId, QWidget *parent) : QWidget(parent){
+snowman::snowman(QWidget *parent) : QWidget(parent){
    setFixedSize(204,308);
 }
 
