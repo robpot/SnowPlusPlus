@@ -3,7 +3,7 @@
 #include "messageBox.h"
 
 messageBox::messageBox(QString textval, int blockId, QWidget *parent) : QWidget(parent){
-   setFixedSize(196,64);
+   setFixedSize(616,115);
 }
 
 void messageBox::paintEvent(QPaintEvent *){
