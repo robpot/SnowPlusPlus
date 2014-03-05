@@ -8,6 +8,6 @@ scorebox::scorebox(QWidget *parent) : QWidget(parent){
 
 void scorebox::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.setBrush(Qt::green);
+   painter.setPen(QPen(QBrush(Qt::black),3));
    painter.drawRect(1,1 , width()-2, height()-2);
 }

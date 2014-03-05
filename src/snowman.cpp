@@ -8,6 +8,6 @@ snowman::snowman(QWidget *parent) : QWidget(parent){
 
 void snowman::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.setBrush(Qt::gray);
-   painter.drawRect(1,1 , width()-2, height()-2);
+   QRect rect(0,0,width(),height());
+   painter.drawImage(rect,QImage(":/images/resources/snowman_A_0.png"));
 }

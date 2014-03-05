@@ -7,7 +7,7 @@ codeFrame::codeFrame(QWidget *parent): QWidget(parent){
 
 void codeFrame::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.setBrush(Qt::red);
+   painter.setPen(QPen(QBrush(Qt::black),3));
    painter.drawRect(1,1,width()-2, height()-2);
 
 }

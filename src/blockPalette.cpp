@@ -6,6 +6,7 @@ blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
 }
 void blockPalette::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.setBrush(Qt::cyan);
-   painter.drawRect(1,1,width()-2, height()-2);
+   QRect rect(0,0,width(),height());
+   painter.setOpacity(0.8);
+   painter.drawImage(rect,QImage(":/images/resources/blockpalette.png"));
 }
