@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>resources/animationframe_1.png</file>
+        <file>resources/backdrop_winter.png</file>
+        <file>resources/block.png</file>
+        <file>resources/blockpalette.png</file>
+        <file>resources/snowman_A_0.png</file>
+        <file>resources/snowman_B_0.png</file>
+        <file>resources/snowman_C_0.png</file>
+        <file>resources/snowman_D_0.png</file>
+    </qresource>
+</RCC>

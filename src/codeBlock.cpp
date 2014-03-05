@@ -8,5 +8,6 @@ codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(pa
 
 void codeBlock::paintEvent(QPaintEvent *){
    QPainter painter(this);
+   painter.setBrush(Qt::white);
    painter.drawRect(1,1 , width()-2, height()-2);
 }

@@ -8,5 +8,6 @@ backdrop::backdrop(QWidget *parent) : QWidget(parent){
 
 void backdrop::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.drawRect(1,1 , width()-2, height()-2);
+   QRect* rect = new QRect(0,0,width(),height());
+   painter.drawImage(*rect,QImage(":/images/resources/backdrop_winter.png"));
 }

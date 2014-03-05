@@ -37,3 +37,6 @@ HEADERS  += src/snowPlusPlus.h \
     src/snowman.h \
     src/scorebox.h \
     src/backdrop.h
+
+RESOURCES += \
+    resources.qrc
