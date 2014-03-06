@@ -8,5 +8,6 @@
         <file>resources/snowman_B_0.png</file>
         <file>resources/snowman_C_0.png</file>
         <file>resources/snowman_D_0.png</file>
+	<file>resources/arrow.png</file>
     </qresource>
 </RCC>

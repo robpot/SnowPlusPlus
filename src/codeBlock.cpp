@@ -3,7 +3,7 @@
 #include "codeBlock.h"
 
 codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(parent){
-   setBaseSize(196,64);
+   setFixedSize(196,64);
 }
 
 void codeBlock::paintEvent(QPaintEvent *){
