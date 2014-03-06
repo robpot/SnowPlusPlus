@@ -1,5 +1,4 @@
-//blockPalette.cpp
-#include "blockpalette.h"
+#include "blockPalette.h"
 
 blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);

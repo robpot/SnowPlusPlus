@@ -10,7 +10,8 @@ class blockPalette :public QWidget{
 
 public:
     blockPalette(QWidget *parent=0);
-  protected:
+protected:
+    // paint event
     void paintEvent(QPaintEvent *);
 private:
     QList<codeBlock*> blocks;
