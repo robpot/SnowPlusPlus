@@ -4,10 +4,14 @@
 
 codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(parent){
    setFixedSize(196,64);
+   text = textval;
 }
 
 void codeBlock::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.setBrush(Qt::white);
-   painter.drawRect(1,1 , width()-2, height()-2);
+   QRect bound(0,0,width(),height());
+   painter.setOpacity(0.7);
+   painter.drawImage(bound,QImage(":/images/resources/block.png"));
+   painter.setOpacity(1.0);
+   painter.drawText(bound,text,QTextOption(Qt::AlignCenter));
 }

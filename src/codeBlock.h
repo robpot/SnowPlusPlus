@@ -13,6 +13,9 @@ public:
    
 protected:
    void paintEvent(QPaintEvent *e);
+
+private:
+   QString text;
 };
 
 

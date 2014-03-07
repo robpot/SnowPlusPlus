@@ -17,7 +17,7 @@ blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    total_pages = (int)ceil((double)number/block_per_page);
    for(int i=0; i < number; i++)
    {
-      blocks.push_back(new codeBlock("word", 0, this));
+      blocks.push_back(new codeBlock(QString::number(i), i, this));
       blocks.last()->move(4,44+((blocks.last()->height()+4)*i));
       if(i>=block_per_page)
 	 blocks.last()->hide();
@@ -81,5 +81,5 @@ void blockPalette::setPage(int pages) {
    for(i; (i < bpp) && (i < blocks.size()); i++)
       blocks[i]->show();
    for(int i=0; i < blocks.size(); i++)
-	 blocks[i]->move(4,-(pages*page_height)+(44+((blocks.last()->height()+4)*i)));
+      blocks[i]->move(4,-(pages*page_height)+(44+((blocks.last()->height()+4)*i)));
 }
