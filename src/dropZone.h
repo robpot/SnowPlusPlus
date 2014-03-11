@@ -10,9 +10,11 @@
 class dropZone : public QWidget {
    Q_OBJECT
   public:
-   dropZone(QWidget *p =0);
+   dropZone(QString s, int i, QWidget *p =0);
   protected:
    void paintEvent(QPaintEvent *);
+   int ID;
+   QString text;
 };
 
 #endif
