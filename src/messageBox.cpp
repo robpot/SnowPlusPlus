@@ -8,6 +8,8 @@ messageBox::messageBox(QWidget *parent) : QWidget(parent){
 
 void messageBox::paintEvent(QPaintEvent *){
    QPainter painter(this);
-   painter.setPen(QPen(QBrush(Qt::black),3));
-   painter.drawRect(1,1 , width()-2, height()-2);
+   QRect rect (0,0,width(),height());
+   painter.drawImage(rect, QImage(":/images/resources/messagebox.png"));
+   //painter.setPen(QPen(QBrush(Qt::black),3));
+   //painter.drawRect(1,1 , width()-2, height()-2);
 }
