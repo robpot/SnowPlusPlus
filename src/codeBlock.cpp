@@ -1,10 +1,15 @@
 //codeBlock.cpp
 
 #include "codeBlock.h"
+#include <QDebug>
 
 codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(parent){
    setFixedSize(196,64);
    text = textval;
+   connect(this,SIGNAL(sendUpBlock(codeBlock*)),
+           parent,SIGNAL(sendUpBlock(codeBlock*)));
+   connect(this,SIGNAL(sendUpBlock(codeBlock*)),
+           parent,SLOT(removeFromList(codeBlock*)));
 }
 
 void codeBlock::paintEvent(QPaintEvent *){
@@ -15,3 +20,21 @@ void codeBlock::paintEvent(QPaintEvent *){
    painter.setOpacity(1.0);
    painter.drawText(bound,text,QTextOption(Qt::AlignCenter));
 }
+
+void codeBlock::mousePressEvent(QMouseEvent *event)
+{
+  if(event->buttons() == Qt::LeftButton)
+    emit sendUpBlock(this);
+}
+
+void codeBlock::mouseReleaseEvent(QMouseEvent *event)
+{
+  if(event->buttons() == Qt::LeftButton)
+    emit sendUpBlock(NULL);
+}
+
+void codeBlock::mouseMoveEvent(QMouseEvent *event)
+{
+  //move(event->pos());
+}
+

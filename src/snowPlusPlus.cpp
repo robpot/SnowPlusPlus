@@ -10,6 +10,9 @@ snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
    message = new messageBox(this);
    snow = new snowman(this);
    score = new scorebox(this);
+   storage = new dragStorage(this);
+   connect(palette,SIGNAL(sendUpBlock(codeBlock*)),
+           storage,SLOT(setBlock(codeBlock*)));
    back->show();
    back->move(0,0);
    palette->show();

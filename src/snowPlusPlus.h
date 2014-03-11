@@ -10,6 +10,7 @@
 #include "snowman.h"
 #include "backdrop.h"
 #include "scorebox.h"
+#include "dragStorage.h"
 
 
 class snowPlusPlus :public QWidget{
@@ -28,6 +29,7 @@ private:
    snowman* snow;
    backdrop* back;
    scorebox* score;
+   dragStorage* storage;
 
 
 };

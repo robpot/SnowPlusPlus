@@ -18,6 +18,7 @@ blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    for(int i=0; i < number; i++)
    {
       blocks.push_back(new codeBlock(QString::number(i), i, this));
+      blocks.last()->setPalettePos(i);
       blocks.last()->move(4,44+((blocks.last()->height()+4)*i));
       if(i>=block_per_page)
 	 blocks.last()->hide();
@@ -82,4 +83,10 @@ void blockPalette::setPage(int pages) {
       blocks[i]->show();
    for(int i=0; i < blocks.size(); i++)
       blocks[i]->move(4,-(pages*page_height)+(44+((blocks.last()->height()+4)*i)));
+}
+
+void blockPalette::removeFromList(codeBlock *c)
+{
+  //blocks.removeAt(c->getPalettePos());
+  //setPage(current_page);
 }

@@ -13,6 +13,8 @@ class blockPalette :public QWidget{
 
 public:
     blockPalette(QWidget *parent=0);
+public slots:
+    void removeFromList(codeBlock*);
 protected:
     // paint event
     void paintEvent(QPaintEvent *);
@@ -27,6 +29,8 @@ private:
     int number;
     int block_per_page;
     int page_height;
+signals:
+    void sendUpBlock(codeBlock*);
 };
 
 #endif

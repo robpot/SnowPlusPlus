@@ -23,7 +23,8 @@ SOURCES += src\main.cpp\
     src/messageBox.cpp \
     src/snowman.cpp \
     src/scorebox.cpp \
-    src/backdrop.cpp
+    src/backdrop.cpp \
+    src/dragStorage.cpp
 
 
 HEADERS  += src/snowPlusPlus.h \
@@ -36,7 +37,8 @@ HEADERS  += src/snowPlusPlus.h \
     src/messageBox.h \
     src/snowman.h \
     src/scorebox.h \
-    src/backdrop.h
+    src/backdrop.h \
+    src/dragStorage.h
 
 RESOURCES += \
     resources.qrc
