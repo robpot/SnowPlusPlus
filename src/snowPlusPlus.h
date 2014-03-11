@@ -28,6 +28,7 @@ private:
    snowman* snow;
    backdrop* back;
    scorebox* score;
+   QTime *timeLimit;
 
 
 };
