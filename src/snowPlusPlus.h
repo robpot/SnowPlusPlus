@@ -30,6 +30,7 @@ private:
    backdrop* back;
    scorebox* score;
    dragStorage* storage;
+   QTime *timeLimit;
 
 
 };

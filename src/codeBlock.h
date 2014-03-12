@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QString>
 #include <QPainter>
+#include <QDrag>
+#include <QMimeData>
 #include <QMouseEvent>
 
 class codeBlock :public QWidget{

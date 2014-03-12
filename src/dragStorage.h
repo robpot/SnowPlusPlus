@@ -15,8 +15,11 @@ protected:
   void mouseMoveEvent(QMouseEvent *);
 public slots:
   bool setBlock(codeBlock*);
+  void setMousePlacement();
+  codeBlock* getCurrent();
 private:
   codeBlock* current;
+  QCursor c;
 
 };
 
