@@ -17,8 +17,10 @@ snowman::snowman(QWidget *parent, int minutes, int seconds) : QWidget(parent){
     timer=new QTimer(this);
     timer->setInterval((time->minute()*60000+time->second()*1000)/4);
     connect(timer,SIGNAL(timeout()),this,SLOT(nextSnowman()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(sendMessage()));
     timer->start();
     if(count>3) {return;}
+
 }
 
 void snowman::paintEvent(QPaintEvent *){
@@ -32,4 +34,21 @@ void snowman::nextSnowman(){
 
     repaint();
     timer->start();
+}
+
+void snowman::sendMessage(const QString &str){
+    emitMessage(str);
+}
+void snowman::sendMessage(){
+    QString str;
+    if (count<3){
+    if (count==1){str="Who turned up the heat?";}
+    if (count==2){str="I'm meellllttttiiinnnggg...";}
+    if (count==3){str="FAIL";}
+    emitMessage(str);}
+}
+
+void snowman::mousePressEvent(QMouseEvent *e){
+    sendMessage("testtesttesttesttest \n testtesttesttesttesttest. ");
+
 }

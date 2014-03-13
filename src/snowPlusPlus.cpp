@@ -1,21 +1,22 @@
-//codeBlock.cpp
+
 
 #include "snowPlusPlus.h"
 
 snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
-   storage = new dragStorage(this); 
    timeLimit=new QTime(0,0,30,0);
    back = new backdrop(this);
    palette = new blockPalette(this);
-   palette->setDragStorage(storage);
-   frame = new codeFrame(this,storage);
+   frame = new codeFrame(this);
    message = new messageBox(this);
    snow = new snowman(this,timeLimit->minute(),timeLimit->second());
    score = new scorebox(this,timeLimit->minute(),timeLimit->second());
-   connect(palette,SIGNAL(sendUpBlock(codeBlock*)),
-           storage,SLOT(setBlock(codeBlock*)));
+   storage = new dragStorage(this);
+   connect(palette,SIGNAL(sendUpBlock(codeBlock*)),storage,SLOT(setBlock(codeBlock*)));
+   connect(snow,SIGNAL(emitMessage(const QString &)),this,SIGNAL(emitMessage(const QString &)));
+   connect(this,SIGNAL(emitMessage(const QString &)),message,SLOT(catchMessage(const QString &)));
+   connect(score,SIGNAL(gameOver()),this,SLOT(gameEnd()));
    back->show();
    back->move(0,0);
    palette->show();
@@ -31,8 +32,12 @@ snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
 }
 
 void snowPlusPlus::paintEvent(QPaintEvent *){
-   QPainter painter(this);
-   painter.drawRect(1,1 , width()-2, height()-2);
+    QPainter painter(this);
+    painter.drawRect(1,1 , width()-2, height()-2);
+}
+
+void snowPlusPlus::gameEnd(){
+    QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
 }
 
 void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)

@@ -6,11 +6,16 @@ scorebox::scorebox(QWidget *parent, int min, int sec) : QWidget(parent){
     setFixedSize(204,58);
     QGridLayout *layout=new QGridLayout();
     QLabel *score=new QLabel("???");
-    timer=new LCDTimer(this,min,sec);
+    timeElapsed=new QTimer();
+    timeElapsed->setInterval(min*60000+sec*1000);
+    lcdTimer=new LCDTimer(this,min,sec);
     layout->addWidget(score,0,0);
-    layout->addWidget(timer,0,1);
+    layout->addWidget(lcdTimer,0,1);
     setLayout(layout);
-    timer->timer->start();
+    lcdTimer->ticks->start();
+    timeElapsed->start();
+    connect(timeElapsed,SIGNAL(timeout()),lcdTimer->ticks,SLOT(stop()));
+    connect(timeElapsed,SIGNAL(timeout()),this,SIGNAL(gameOver()));
 }
 
 void scorebox::paintEvent(QPaintEvent *){
