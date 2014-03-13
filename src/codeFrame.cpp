@@ -1,6 +1,6 @@
 //codeFrame.cpp
 #include "codeFrame.h"
-#include <QGridLayout>
+#include <QVBoxLayout>
 #include <cmath>
 #include <QLabel>
 //Constructor for the code frame. Accepts a list of strings.
@@ -10,41 +10,36 @@
 //codeFrame::codeFrame(QStringList code , QWidget *parent=0 ): QWidget(parent){
 codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    setFixedSize(616, 461);
-
+   //default orientation
+   defX = 20;
+   defY = 20;
    //codeList = code;
    store = s;
+   //used in pages
+   std::pair<int,int> pageOne(0,0);
+   pages.push(pageOne);
+   
    //****************************
    //Temp code for this Sprint
-   for(int q=1; q<4; q++){
-      for(int i=1; i<8; i++){
-	 QString *j = new QString(i);
-	 j->append(" ,");
-	 j->append(q);
-	 j->append(" this is a test."); 
-	 codeList << *j ;
-      }
+   codeList << "Label int Main" << "Spacer";
+   for(int i=1; i<40; i++){
+      QString *j = new QString(i);
+      j->append(" ,");
+      j->append(" this is a test."); 
+      codeList << *j ;
    }
-
    
-   //*****************************
+   //**************************
 
-   
-   QGridLayout *grid = new QGridLayout();
    for(int i=0; i<codeList.size(); i++){
-      zones.push_back(new dropZone(codeList.at(i), i));
-      zones.last()->setDragStorage(store);
-   }
-
-   int k=0;
-   for(int q=1; q<4; q++){
-      for(int i=1; i<8; i++){
-	 grid->addWidget(zones.at( k ) , i,q);
-	 k++;
+      if(!isLabel(codeList.at(i)) && !isSpacer(codeList.at(i))){
+	 zones.push_back(new dropZone(codeList.at(i), i,this));
+	 zones.last()->setDragStorage(store);
+	 connect(zones.last(), SIGNAL(newSize()), this, SLOT(resize()));
+	 
       }
    }
-   
-   setLayout(grid);
-   
+   buildPage();
 }
 
 void codeFrame::paintEvent(QPaintEvent *){
@@ -52,51 +47,88 @@ void codeFrame::paintEvent(QPaintEvent *){
    QRect rect (0,0,width(),height());
    painter.setOpacity(0.8);
    painter.drawImage(rect, QImage(":/images/resources/dropspace.png"));
+   QImage *botA = new QImage(":/images/reosurces/arrow.png");
+   QImage *topA = new QImage(":/images/resources/arrow.png");
+   *botA = botA->mirrored(true,true);
+
+   QRect top( (width()/2), 4, topA->width(), topA->height() );
+   QRect bot( (width()/2), (height() - botA->height() ) -4, botA->width(), botA->height());
+   
+   painter.drawImage(top,*topA);
+   painter.drawImage(bot, *botA);
+   
+}
+
+void codeFrame::mousePressEvent(QMouseEvent *e){
+  /* if(e->button() == Qt::LeftMouseButton){
+      if(e->pos()){
+      }
+      if(){
+      }
+      }
+  */
 }
 						\
 //Requirements for the codeList. include special QStrings to mark empty zones.
 //The Grid is built with dropZones, spacers , and lables
-void codeFrame::buildGrids(){
-
-   //calc the max number of pages.
-   int pg= static_cast<int>(ceil(static_cast<double>(codeList.size())/21.0));  
-
-   //make pages
-   for(int q=0;q < pg; q++){
-      QGridLayout *page = new QGridLayout();
-      //loops through
-      for(int i= (q*21) ; i< ( ((q+1)*21) ) ; i++){
-	 int row = i % 7;
-	 int col = i % 3;
-	 if( i > codeList.size()){
-	    //make spacer
-	    page->addItem(new QSpacerItem(196,64), row, col);
-	 }else if( isSpacer(codeList.at(i)) ){
-	    //make spacer
-	    page->addItem(new QSpacerItem(196,64), row, col);
-	 }else if( isLabel(codeList.at(i)) ){
-	    //make label
-	    page->addWidget(new QLabel(codeList.at(i)), row, col);
-	 }else{
-	    //drop zone
-	    page->addWidget(new dropZone(codeList.at(i),i), row, col);
+void codeFrame::buildPage(int i, int k){
+   //contains text, and dropzones
+   // need an ordered list for show.
+   int Y = defY;
+   int X = defX;
+   for(; i< codeList.size(); i++){
+      if(Y < 400){
+	 if(isLabel(codeList.at(i))){
+	    QString l = codeList.at(i);
+	    QLabel *r = new QLabel( l.remove("Label") , this);
+	    r->setBaseSize(152,12);
+	    r->move(X,Y);
+	    r->show();
+	    Y = Y + r->height() + 2;
+	 }else if(isSpacer(codeList.at(i))){
+	    QLabel *e = new QLabel("", this);
+	    e->setBaseSize(152,12);
+	    e->move(X,Y);
+	    e->show();
+	    Y = Y + e->height() + 2;
+	 }else {
+	    zones.at(k)->move(X,Y);
+	    zones.at(k)->show();
+	    Y = Y  +zones.at(k)->height() + 2;
+	    k++;
 	 }
+      }else{
+	 //other pages made
+	 std::pair<int,int> page(i,k);
+	 pages.push(page);
       }
-      pages.push_back(new QWidget() );
-      pages.at(q)->setLayout(page);
    }
 }
 
+
 bool codeFrame::isLabel(const QString &s){
-   return s.contains("Lable");
+   return s.contains("Label");
 }
 bool codeFrame::isSpacer(const QString &s){
    return s.contains("Spacer");   
 }
 
-void codeFrame::page(int i){
+void codeFrame::pageUp(){
+   if(pages.size() > 0){
+      if(pages.size() != 1){
+	 pages.pop();
+      }
+      std::pair<int,int> p(pages.top());
+      buildPage(p.first, p.second);
+   }
 }
-
-
-
-
+void codeFrame::pageDown(){
+   if(pages.size() > 1){
+      std::pair<int,int> p(pages.top());
+      buildPage(p.first, p.second);
+   }
+   
+}
+void codeFrame::resize(){
+   buildPage();
+}

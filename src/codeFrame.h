@@ -6,6 +6,9 @@
 #include <QPainter>
 #include "dropZone.h"
 #include "dragStorage.h"
+#include <stack>
+#include <utility>
+
 
 class codeFrame :public QWidget{
    Q_OBJECT
@@ -15,17 +18,24 @@ class codeFrame :public QWidget{
    codeFrame(QWidget *parent = 0, dragStorage *s =0);
  protected:
    void paintEvent(QPaintEvent *e);
-   //void 
-
+   void mousePressEvent(QMouseEvent *e);  
+   
   private:
    QList<dropZone*> zones;
    QStringList codeList;
-   QList<QWidget*> pages;
-   void buildGrids();
-   void page(int i);
+   void buildPage(int k =0, int i=0);
    bool isLabel(const QString & s);
    bool isSpacer(const QString & s);
+   void pageUp();
+   void pageDown();
    dragStorage *store;
+   int defX, defY;
+   QWidget *inner;
+   //first is itterator of codeList
+   //second if itterator of zones
+   std::stack< std::pair<int,int> > pages;
+   public slots:
+   void resize();
 };
 
 #endif
