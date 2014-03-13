@@ -20,7 +20,7 @@ void dropZone::paintEvent(QPaintEvent *){
 void dropZone::dragEnterEvent(QDragEnterEvent *event)
 {
   qDebug()<<"Entered "<<text<<endl;
-  event->acceptProposedAction();
+  event->acceptProposedAction(); 
 }
 
 void dropZone::dropEvent(QDropEvent *event)
