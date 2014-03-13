@@ -31,6 +31,7 @@ class codeFrame :public QWidget{
    dragStorage *store;
    int defX, defY;
    QWidget *inner;
+   QImage *botA, *topA;
    //first is itterator of codeList
    //second if itterator of zones
    std::stack< std::pair<int,int> > pages;

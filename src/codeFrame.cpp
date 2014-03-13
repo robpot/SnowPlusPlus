@@ -46,38 +46,43 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
 void codeFrame::paintEvent(QPaintEvent *){
    QPainter painter(this);
    QRect rect (0,0,width(),height());
+   botA = new QImage();
+   topA = new QImage(":/images/resources/arrow.png");
+   
+   *botA = topA->mirrored(true,true);
+   QRect top( (width()/2), 4, topA->width(), topA->height() );
+   QRect bot( (width()/2), height() - botA->height() -4 , botA->width(), botA->height());
    painter.setOpacity(0.8);
    painter.drawImage(rect, QImage(":/images/resources/dropspace.png"));
-   QImage *botA = new QImage(":/images/reosurces/arrow.png");
-   QImage *topA = new QImage(":/images/resources/arrow.png");
-   *botA = botA->mirrored(true,true);
-
-   QRect top( (width()/2), 4, topA->width(), topA->height() );
-   QRect bot( (width()/2), (height() - botA->height() ) -4, botA->width(), botA->height());
-   
-   painter.drawImage(top,*topA);
    painter.drawImage(bot, *botA);
+   painter.drawImage(top,*topA);
+   
    
 }
 
 void codeFrame::mousePressEvent(QMouseEvent *e){
-  /* if(e->button() == Qt::LeftMouseButton){
-      if(e->pos()){
+   int ypos = e->pos().y();
+   if(e->button() == Qt::LeftButton){
+      if(ypos < topA->height()+8){
+	 pageUp();	 
       }
-      if(){
+      if(ypos > (height() - botA->height() -8)){
+	 pageDown();
       }
-      }
-  */
+   }
 }
 						\
 //Requirements for the codeList. include special QStrings to mark empty zones.
 //The Grid is built with dropZones, spacers , and lables
-void codeFrame::buildPage(int i, int k){
+void codeFrame::buildPage(int code , int zone){
    //contains text, and dropzones
    // need an ordered list for show.
    int Y = defY;
    int X = defX;
-   for(; i< codeList.size(); i++){
+   int i = code;
+   int k = zone;
+   bool morePages = false;
+   while(i<codeList.size() && !morePages){
       if(Y < 400){
 	 if(isLabel(codeList.at(i))){
 	    QString l = codeList.at(i);
@@ -86,12 +91,14 @@ void codeFrame::buildPage(int i, int k){
 	    r->move(X,Y);
 	    r->show();
 	    Y = Y + r->height() + 2;
+	    i++;
 	 }else if(isSpacer(codeList.at(i))){
 	    QLabel *e = new QLabel("", this);
 	    e->setBaseSize(152,12);
 	    e->move(X,Y);
 	    e->show();
 	    Y = Y + e->height() + 2;
+	    i++;
 	 }else {
 	    zones.at(k)->move(X,Y);
 	    zones.at(k)->show();
@@ -102,6 +109,13 @@ void codeFrame::buildPage(int i, int k){
 	 //other pages made
 	 std::pair<int,int> page(i,k);
 	 pages.push(page);
+	 morePages = true;
+	 for(int l=0; l<zone; l++){
+	    zones.at(l)->hide();
+	 }
+	 for(int l=k; l<zones.size(); l++){
+	    zones.at(l)->hide();
+	 }
       }
    }
 }
