@@ -20,7 +20,9 @@ public:
    snowPlusPlus(QWidget *parent=0);
 
 protected:
-   void paintEvent(QPaintEvent *e);
+   void paintEvent(QPaintEvent *);
+   void dragEnterEvent(QDragEnterEvent *);
+   void dropEvent(QDropEvent *);
 
 private:
    blockPalette* palette;

@@ -4,10 +4,12 @@
 
 snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
+   setAcceptDrops(true);
    storage = new dragStorage(this); 
    timeLimit=new QTime(0,0,30,0);
    back = new backdrop(this);
    palette = new blockPalette(this);
+   palette->setDragStorage(storage);
    frame = new codeFrame(this,storage);
    message = new messageBox(this);
    snow = new snowman(this,timeLimit->minute(),timeLimit->second());
@@ -31,4 +33,15 @@ snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
 void snowPlusPlus::paintEvent(QPaintEvent *){
    QPainter painter(this);
    painter.drawRect(1,1 , width()-2, height()-2);
+}
+
+void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)
+{
+   event->acceptProposedAction();
+}
+
+void snowPlusPlus::dropEvent(QDropEvent *event)
+{
+   qDebug()<<"Drop event!";
+   palette->getBlocks(storage->getCurrent()->getPalettePos())->activate();
 }

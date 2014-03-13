@@ -28,7 +28,7 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    
    //*****************************
 
-   
+   /*
    QGridLayout *grid = new QGridLayout();
    for(int i=0; i<codeList.size(); i++){
       zones.push_back(new dropZone(codeList.at(i), i));
@@ -44,7 +44,11 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    }
    
    setLayout(grid);
-   
+   */
+
+   zones.push_back(new dropZone(codeList.at(0), 0, this));
+   zones.last()->setDragStorage(store);
+   zones.last()->show();
 }
 
 void codeFrame::paintEvent(QPaintEvent *){
