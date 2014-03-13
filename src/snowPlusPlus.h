@@ -11,6 +11,7 @@
 #include "backdrop.h"
 #include "scorebox.h"
 #include "dragStorage.h"
+#include <QMessageBox>
 
 
 class snowPlusPlus :public QWidget{
@@ -18,7 +19,8 @@ class snowPlusPlus :public QWidget{
 
 public:
    snowPlusPlus(QWidget *parent=0);
-
+public slots:
+   void gameEnd();
 protected:
    void paintEvent(QPaintEvent *e);
 
@@ -32,6 +34,8 @@ private:
    dragStorage* storage;
    QTime *timeLimit;
 
+signals:
+   void emitMessage(const QString &);
 
 };
 

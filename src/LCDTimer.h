@@ -10,12 +10,16 @@ class LCDTimer:public QLCDNumber{
 
 public:
     LCDTimer(QWidget * parentWidget,int minutes,int seconds);
-    void setTime(int min,int sec);
-    QTimer* timer;
+    QTimer* ticks;
     QTime*  timeValue;
 
 public slots:
     void setDisplay();
+
+private:
+
+    int min;
+    int sec;
 
 };
 

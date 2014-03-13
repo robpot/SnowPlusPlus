@@ -16,12 +16,15 @@ class scorebox :public QWidget{
 
 public:
     scorebox(QWidget *parent=0,int min=1,int sec=0);
+signals:
+    void gameOver();
 
 protected:
     void paintEvent(QPaintEvent *e);
 
 private:
-    LCDTimer *timer;
+    LCDTimer *lcdTimer;
+    QTimer *timeElapsed;
 
 };
 
