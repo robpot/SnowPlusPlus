@@ -38,7 +38,9 @@ void codeBlock::mouseMoveEvent(QMouseEvent *event)
   if(event->buttons() == Qt::LeftButton)
   {
       QDrag* drag = new QDrag(this);
-      drag->setPixmap(QPixmap(":/images/resources/block.png"));
+      QPixmap dragpixmap(":/images/resources/block.png");
+      dragpixmap = dragpixmap.scaled(width()/2,height()/2);
+      drag->setPixmap(dragpixmap);
       QMimeData *mimeData = new QMimeData;
       drag->setMimeData(mimeData);
       Qt::DropAction dropAction = drag->exec();
