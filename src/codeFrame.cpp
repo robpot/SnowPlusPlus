@@ -31,6 +31,11 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    
    //**************************
 
+<<<<<<< HEAD
+=======
+   /*
+   QGridLayout *grid = new QGridLayout();
+>>>>>>> f07a587be8f3f8c160f67580cba579d569813f9f
    for(int i=0; i<codeList.size(); i++){
       if(!isLabel(codeList.at(i)) && !isSpacer(codeList.at(i))){
 	 zones.push_back(new dropZone(codeList.at(i), i,this));
@@ -39,7 +44,17 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
 	 
       }
    }
+<<<<<<< HEAD
    buildPage();
+=======
+   
+   setLayout(grid);
+   */
+
+   zones.push_back(new dropZone(codeList.at(0), 0, this));
+   zones.last()->setDragStorage(store);
+   zones.last()->show();
+>>>>>>> f07a587be8f3f8c160f67580cba579d569813f9f
 }
 
 void codeFrame::paintEvent(QPaintEvent *){

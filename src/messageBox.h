@@ -10,9 +10,14 @@ class messageBox :public QWidget{
 
 public:
    messageBox(QWidget *parent=0);
+public slots:
+   void catchMessage(const QString &str);
    
 protected:
    void paintEvent(QPaintEvent *e);
+
+private:
+   QString msg;
 };
 
 

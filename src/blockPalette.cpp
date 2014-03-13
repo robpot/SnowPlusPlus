@@ -8,6 +8,7 @@
 // the code blocks in the push_back part of the for loop
 blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);
+   setAcceptDrops(true);
    top_arrow = new QImage(":/images/resources/arrow.png");
    bottom_arrow = new QImage(":/images/resources/arrow.png");
    *bottom_arrow = bottom_arrow->mirrored(true,true);
@@ -17,7 +18,7 @@ blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    total_pages = (int)ceil((double)number/block_per_page);
    for(int i=0; i < number; i++)
    {
-      blocks.push_back(new codeBlock(QString::number(i), i, this));
+      blocks.push_back(new codeBlock("Hello \nWorld\n\n\n\ntest\n\n\n\nThe End", i, this));
       blocks.last()->setPalettePos(i);
       blocks.last()->move(4,44+((blocks.last()->height()+4)*i));
       if(i>=block_per_page)
@@ -85,8 +86,18 @@ void blockPalette::setPage(int pages) {
       blocks[i]->move(4,-(pages*page_height)+(44+((blocks.last()->height()+4)*i)));
 }
 
-void blockPalette::removeFromList(codeBlock *c)
+void blockPalette::resizeList(int x)
 {
-  //blocks.removeAt(c->getPalettePos());
-  //setPage(current_page);
+   blocks[x]->deactivate();
+}
+
+void blockPalette::dragEnterEvent(QDragEnterEvent *event)
+{
+   event->acceptProposedAction();
+}
+
+void blockPalette::dropEvent(QDropEvent *event)
+{
+   qDebug()<<"Drop event!";
+   blocks[store->getCurrent()->getPalettePos()]->activate();
 }

@@ -7,6 +7,7 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QMouseEvent>
+#include <QBitmap>
 
 class codeBlock :public QWidget{
     Q_OBJECT
@@ -16,6 +17,9 @@ public:
    QString getID() { return text; }
    int getPalettePos() { return palette_pos; }
    void setPalettePos(int p) { palette_pos = p; }
+   int getNumLines() { return numLines; }
+   void deactivate();
+   void activate();
 protected:
    void paintEvent(QPaintEvent *e);
    void mousePressEvent(QMouseEvent *);
@@ -24,8 +28,12 @@ protected:
 private:
    QString text;
    int palette_pos;
+   int numLines;
+   int ID;
+   bool active;
 signals:
    void sendUpBlock(codeBlock*);
+   void triggerResize(int);
 };
 
 

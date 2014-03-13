@@ -17,12 +17,19 @@ class dropZone : public QWidget {
   protected:
    void paintEvent(QPaintEvent *);
    void dragEnterEvent(QDragEnterEvent *);
+   void dragLeaveEvent(QDragLeaveEvent *);
    void dropEvent(QDropEvent *);
+   void mousePressEvent(QMouseEvent *);
+   void mouseMoveEvent(QMouseEvent *);
+   void mouseReleaseEvent(QMouseEvent *);
   private:
    int ID;
    QString text;
    dragStorage *drag;
    int baseWidth, baseHeight;
+   codeBlock *block;
+  signals:
+   void newSize();
 };
 
 #endif
