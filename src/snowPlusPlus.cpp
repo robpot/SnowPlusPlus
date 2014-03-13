@@ -1,4 +1,4 @@
-//codeBlock.cpp
+
 
 #include "snowPlusPlus.h"
 
@@ -28,8 +28,6 @@ snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
     snow->move(820,268);
     score->show();
     score->move(820,0);
-
-
 }
 
 void snowPlusPlus::paintEvent(QPaintEvent *){

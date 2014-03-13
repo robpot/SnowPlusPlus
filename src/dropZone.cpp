@@ -3,10 +3,16 @@
 #include <QDebug>
 
 dropZone::dropZone(QString s, int i ,QWidget *p) : QWidget(p){
-   setBaseSize(154,12);
+   baseWidth = 154;
+   baseHeight = 12;
+   setGeometry(x(),y(),baseWidth,baseHeight);
    setAcceptDrops(true);
    text =s;
    ID = i;
+}
+
+void dropZone::setDragStorage(dragStorage *store) {
+   drag = store;
 }
 
 void dropZone::paintEvent(QPaintEvent *){
@@ -19,8 +25,10 @@ void dropZone::paintEvent(QPaintEvent *){
 
 void dropZone::dragEnterEvent(QDragEnterEvent *event)
 {
-  qDebug()<<"Entered "<<text<<endl;
-  event->acceptProposedAction();
+   qDebug()<<"Entered "<<text<<endl;
+   qDebug()<<"drag ID: "<<drag->getCurrent()->getID();
+   setGeometry(x(),y(),drag->getCurrent()->width(),drag->getCurrent()->height());
+   event->acceptProposedAction();
 }
 
 void dropZone::dropEvent(QDropEvent *event)
