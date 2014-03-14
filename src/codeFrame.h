@@ -8,8 +8,9 @@
 #include "dragStorage.h"
 #include <stack>
 #include <utility>
-
-
+#include <map>
+#include <QLabel>
+#include <vector>
 class codeFrame :public QWidget{
    Q_OBJECT
       
@@ -21,9 +22,9 @@ class codeFrame :public QWidget{
    void mousePressEvent(QMouseEvent *e);  
    
   private:
-   QList<dropZone*> zones;
+   std::map<int,dropZone * > zones;
    QStringList codeList;
-   void buildPage(int k =0, int i=0);
+   void buildPage(int start =0);
    bool isLabel(const QString & s);
    bool isSpacer(const QString & s);
    void pageUp();
@@ -34,7 +35,9 @@ class codeFrame :public QWidget{
    QImage *botA, *topA;
    //first is itterator of codeList
    //second if itterator of zones
-   std::stack< std::pair<int,int> > pages;
+   std::map<int,QLabel*> others; 
+   std::vector<int> pages;
+   int curPage;
    public slots:
    void resize();
 };

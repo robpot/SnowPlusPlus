@@ -2,7 +2,7 @@
 #include "codeFrame.h"
 #include <QVBoxLayout>
 #include <cmath>
-#include <QLabel>
+#include <QDebug>
 //Constructor for the code frame. Accepts a list of strings.
 //Total space for blocks is 3 columns 7 rows.
 
@@ -16,8 +16,8 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    //codeList = code;
    store = s;
    //used in pages
-   std::pair<int,int> pageOne(0,0);
-   pages.push(pageOne);
+   pages.push_back(0);
+   curPage = 0;
    
    //****************************
    //Temp code for this Sprint
@@ -32,11 +32,21 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    //**************************
 
    for(int i=0; i<codeList.size(); i++){
-      if(!isLabel(codeList.at(i)) && !isSpacer(codeList.at(i))){
-	 zones.push_back(new dropZone(codeList.at(i), i,this));
-	 zones.last()->setDragStorage(store);
-	 connect(zones.last(), SIGNAL(newSize()), this, SLOT(resize()));
-	 
+      if(isLabel(codeList.at(i))){
+	 QString l = codeList.at(i);
+	 QLabel *r = new QLabel( l.remove("Label") , this);
+	 r->setBaseSize(152,12);
+	 others.insert(std::pair<int,QLabel*> (i,r));
+      }
+      else if(isSpacer(codeList.at(i))){
+	 QLabel *e = new QLabel("", this);
+	 e->setBaseSize(152,12);
+	 others.insert(std::pair<int,QLabel*> (i,e));
+      }else{
+	 dropZone *z = new dropZone(codeList.at(i), i,this);
+	 z->setDragStorage(store);
+	 connect(z, SIGNAL(newSize()), this, SLOT(resize()));
+	 zones.insert(std::pair<int, dropZone*> (i,z));
       }
    }
    buildPage();
@@ -71,51 +81,59 @@ void codeFrame::mousePressEvent(QMouseEvent *e){
       }
    }
 }
-						\
+						
 //Requirements for the codeList. include special QStrings to mark empty zones.
 //The Grid is built with dropZones, spacers , and lables
-void codeFrame::buildPage(int code , int zone){
+void codeFrame::buildPage(int start){
    //contains text, and dropzones
    // need an ordered list for show.
+
+   
+   for(int l=0; l<codeList.size(); l++){
+      if(zones.find(l) != zones.end()){
+	 zones[l]->hide();
+      }
+      if(others.find(l) != others.end()){
+	 others[l]->hide();
+      }
+   }
+
+
    int Y = defY;
    int X = defX;
-   int i = code;
-   int k = zone;
+   int i = start;
    bool morePages = false;
+   
    while(i<codeList.size() && !morePages){
-      if(Y < 400){
-	 if(isLabel(codeList.at(i))){
-	    QString l = codeList.at(i);
-	    QLabel *r = new QLabel( l.remove("Label") , this);
-	    r->setBaseSize(152,12);
-	    r->move(X,Y);
-	    r->show();
-	    Y = Y + r->height() + 2;
+      if(Y < 400){ //Show
+	 if(others.find(i) != others.end()){
+	    others[i]->move(X,Y);
+	    others[i]->show();
+	    Y = Y + others[i]->height() + 2;
 	    i++;
-	 }else if(isSpacer(codeList.at(i))){
-	    QLabel *e = new QLabel("", this);
-	    e->setBaseSize(152,12);
-	    e->move(X,Y);
-	    e->show();
-	    Y = Y + e->height() + 2;
+	 }else if(zones.find(i) != zones.end()){
+	    zones[i]->move(X,Y);
+	    zones[i]->show();
+	    Y = Y  +zones[i]->height() + 2;
 	    i++;
-	 }else {
-	    zones.at(k)->move(X,Y);
-	    zones.at(k)->show();
-	    Y = Y  +zones.at(k)->height() + 2;
-	    k++;
 	 }
-      }else{
-	 //other pages made
-	 std::pair<int,int> page(i,k);
-	 pages.push(page);
+	 
+      }else{ //Hide
+	 pages.push_back(i);
 	 morePages = true;
-	 for(int l=0; l<zone; l++){
-	    zones.at(l)->hide();
+	 /*
+	 for(int l=0; l<start; l++){
+	    if( zones.find(l) != zones.end())
+	       zones[l]->hide();
+	    if(others.find(l) != others.end())
+	       others[l]->hide();
 	 }
-	 for(int l=k; l<zones.size(); l++){
-	    zones.at(l)->hide();
-	 }
+	 for(int l=i; l<codeList.size(); l++){
+	    if(zones.find(l) != zones.end())
+	       zones[l]->hide();
+	    if(others.find(l) != others.end())
+	       others[l]->hide();
+	       }*/
       }
    }
 }
@@ -129,21 +147,19 @@ bool codeFrame::isSpacer(const QString &s){
 }
 
 void codeFrame::pageUp(){
-   if(pages.size() > 0){
-      if(pages.size() != 1){
-	 pages.pop();
-      }
-      std::pair<int,int> p(pages.top());
-      buildPage(p.first, p.second);
+   if(curPage-1 >= 0){
+      curPage--;
+      buildPage(curPage);
    }
 }
 void codeFrame::pageDown(){
-   if(pages.size() > 1){
-      std::pair<int,int> p(pages.top());
-      buildPage(p.first, p.second);
+   if( (curPage+1 < pages.size()) && (curPage+1 < codeList.size()) ){
+      curPage++;
+      buildPage(curPage);
    }
    
 }
 void codeFrame::resize(){
-   buildPage();
+   
+   buildPage(pages[curPage]);
 }
