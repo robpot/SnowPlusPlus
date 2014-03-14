@@ -24,7 +24,7 @@ class dropZone : public QWidget {
    void mouseReleaseEvent(QMouseEvent *);
   private:
    int ID;
-   QString text;
+   QString text,oldtext;
    dragStorage *drag;
    int baseWidth, baseHeight;
    codeBlock *block;

@@ -10,6 +10,7 @@ dropZone::dropZone(QString s, int i ,QWidget *p) : QWidget(p)
    emit newSize();
    setAcceptDrops(true);
    text =s;
+   oldtext = text;
    ID = i;
    block = NULL;
 }
@@ -49,6 +50,10 @@ void dropZone::dropEvent(QDropEvent *event)
    qDebug()<<"Dropped on "<<text;
    setGeometry(x(),y(),432,12*drag->getCurrent()->getNumLines()+5*drag->getCurrent()->getNumLines());
    emit newSize();
+   if(block != NULL)
+    block->activate();
+   else
+    oldtext = text;
    block = drag->getCurrent();
    text = block->getID();
    update();
@@ -68,14 +73,16 @@ void dropZone::mouseReleaseEvent(QMouseEvent *event)
 
 void dropZone::mouseMoveEvent(QMouseEvent *event)
 {
-  if(event->buttons() == Qt::LeftButton)
+  if(block != NULL && event->buttons() == Qt::LeftButton)
   {
-      QDrag* drag = new QDrag(this);
+      QDrag* dragger = new QDrag(this);
       QPixmap dragpixmap(":/images/resources/block.png");
-      dragpixmap = dragpixmap.scaled(width()/2,height()/2);
-      drag->setPixmap(dragpixmap);
+      dragpixmap = dragpixmap.scaled(drag->getCurrent()->width()/2,drag->getCurrent()->height()/2);
+      dragger->setPixmap(dragpixmap);
       QMimeData *mimeData = new QMimeData;
-      drag->setMimeData(mimeData);
-      Qt::DropAction dropAction = drag->exec();
+      text = oldtext;
+      block = NULL;
+      dragger->setMimeData(mimeData);
+      Qt::DropAction dropAction = dragger->exec();
   }
 }

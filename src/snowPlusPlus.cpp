@@ -38,7 +38,7 @@ void snowPlusPlus::paintEvent(QPaintEvent *){
 }
 
 void snowPlusPlus::gameEnd(){
-    QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
+  QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
 }
 
 void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)
