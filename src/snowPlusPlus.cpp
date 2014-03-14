@@ -6,13 +6,14 @@ snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
    timeLimit=new QTime(0,0,30,0);
+   storage = new dragStorage(this);
    back = new backdrop(this);
    palette = new blockPalette(this);
-   frame = new codeFrame(this);
+   palette->setDragStorage(storage);
+   frame = new codeFrame(this,storage);
    message = new messageBox(this);
    snow = new snowman(this,timeLimit->minute(),timeLimit->second());
    score = new scorebox(this,timeLimit->minute(),timeLimit->second());
-   storage = new dragStorage(this);
    connect(palette,SIGNAL(sendUpBlock(codeBlock*)),storage,SLOT(setBlock(codeBlock*)));
    connect(snow,SIGNAL(emitMessage(const QString &)),this,SIGNAL(emitMessage(const QString &)));
    connect(this,SIGNAL(emitMessage(const QString &)),message,SLOT(catchMessage(const QString &)));
