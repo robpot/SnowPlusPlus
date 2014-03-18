@@ -24,3 +24,9 @@ void messageBox::catchMessage(const QString &str){
     msg=str;
     update();
 }
+
+void messageBox::gameEnd()
+{
+   msg = "Game Over.";
+   update();
+}

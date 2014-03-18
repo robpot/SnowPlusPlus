@@ -17,7 +17,7 @@ snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
    connect(palette,SIGNAL(sendUpBlock(codeBlock*)),storage,SLOT(setBlock(codeBlock*)));
    connect(snow,SIGNAL(emitMessage(const QString &)),this,SIGNAL(emitMessage(const QString &)));
    connect(this,SIGNAL(emitMessage(const QString &)),message,SLOT(catchMessage(const QString &)));
-   connect(score,SIGNAL(gameOver()),this,SLOT(gameEnd()));
+   connect(score,SIGNAL(gameOver()),message,SLOT(gameEnd()));
    back->show();
    back->move(0,0);
    palette->show();
@@ -37,9 +37,11 @@ void snowPlusPlus::paintEvent(QPaintEvent *){
     painter.drawRect(1,1 , width()-2, height()-2);
 }
 
+/*
 void snowPlusPlus::gameEnd(){
   QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
 }
+*/
 
 void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)
 {

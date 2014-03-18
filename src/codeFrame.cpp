@@ -21,13 +21,13 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    
    //****************************
    //Temp code for this Sprint
-   codeList << "Label int Main" << "Spacer";
+   codeList << "Label int main() {" << "Spacer";
    for(int i=1; i<3; i++){
       QString *j = new QString(i);
       j->append("Place Block Here");
       codeList << *j ;
    }
-   
+   codeList << "Spacer" << "Label }";
    //**************************
 
    for(int i=0; i<codeList.size(); i++){

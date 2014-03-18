@@ -12,6 +12,7 @@ public:
    messageBox(QWidget *parent=0);
 public slots:
    void catchMessage(const QString &str);
+   void gameEnd();
    
 protected:
    void paintEvent(QPaintEvent *e);

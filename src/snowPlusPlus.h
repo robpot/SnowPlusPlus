@@ -19,8 +19,8 @@ class snowPlusPlus :public QWidget{
 
 public:
    snowPlusPlus(QWidget *parent=0);
-public slots:
-   void gameEnd();
+//public slots:
+//   void gameEnd();
 protected:
    void paintEvent(QPaintEvent *);
    void dragEnterEvent(QDragEnterEvent *);
