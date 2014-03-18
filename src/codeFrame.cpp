@@ -22,10 +22,9 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    //****************************
    //Temp code for this Sprint
    codeList << "Label int Main" << "Spacer";
-   for(int i=1; i<40; i++){
+   for(int i=1; i<3; i++){
       QString *j = new QString(i);
-      j->append(" ,");
-      j->append(" this is a test."); 
+      j->append("Place Block Here");
       codeList << *j ;
    }
    
@@ -60,8 +59,8 @@ void codeFrame::paintEvent(QPaintEvent *){
    topA = new QImage(":/images/resources/arrow.png");
    
    *botA = topA->mirrored(true,true);
-   QRect top( (width()/2), 4, topA->width(), topA->height() );
-   QRect bot( (width()/2), height() - botA->height() -4 , botA->width(), botA->height());
+   QRect top( (width()-topA->width()-32), 4, topA->width(), topA->height() );
+   QRect bot( (width()-botA->width()-32), height() - botA->height() -4 , botA->width(), botA->height());
    painter.setOpacity(0.8);
    painter.drawImage(rect, QImage(":/images/resources/dropspace.png"));
    painter.drawImage(bot, *botA);

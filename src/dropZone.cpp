@@ -31,23 +31,25 @@ void dropZone::paintEvent(QPaintEvent *)
 
 void dropZone::dragEnterEvent(QDragEnterEvent *event)
 {
-   qDebug()<<"Entered "<<text<<endl;
-   qDebug()<<"drag ID: "<<drag->getCurrent()->getID();
-   setGeometry(x(),y(),drag->getCurrent()->width(),drag->getCurrent()->height());
-   emit newSize();
+   if(block == NULL)
+   {
+      setGeometry(x(),y(),drag->getCurrent()->width(),drag->getCurrent()->height());
+      emit newSize();
+   }
    event->acceptProposedAction();
 }
 
 void dropZone::dragLeaveEvent(QDragLeaveEvent *event)
 {
-   qDebug()<<"Leaved "<<text;
-   setGeometry(x(),y(),baseWidth,baseHeight);
-   emit newSize();
+   if(block == NULL)
+   {
+      setGeometry(x(),y(),baseWidth,baseHeight);
+      emit newSize();
+   }
 }
 
 void dropZone::dropEvent(QDropEvent *event)
 {
-   qDebug()<<"Dropped on "<<text;
    setGeometry(x(),y(),432,12*drag->getCurrent()->getNumLines()+5*drag->getCurrent()->getNumLines());
    emit newSize();
    if(block != NULL)
