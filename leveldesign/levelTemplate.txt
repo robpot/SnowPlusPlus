@@ -1,0 +1,54 @@
+Text files are for one difficulty only; multiple difficulties cannot be used
+for the same level.
+
+Time is calculated based on the difficulty given in the text file; teachers have the ability to give a time in <Time> tags if they think that the calculated time is either too fast or too slow for the level. The score will be caluculated using a multiplier based off the difficulty, and remaining time. Harder difficulties get a better bonus to the time score.
+
+Parts of the score formula: Base score for completing + (time remaining * difficulty) - snowman clicks (capped at X clicks)
+
+Base score is calculated based on difficulty plus number of blocks that need to be placed in the drop zone.
+
+Calculating the time allotment for the level is aslo based on similar properties of difficulty and number of blocks.
+
+Number of snowman clicks is a fixed capped value over all difficulties.
+
+The program will keep an ordered list of when the drop zones appear in the code frame, and the map key that corresponds for that zone.
+
+When taking in code blocks, the map for said blocks is a pair of a code block and the integer of the number of times this code block appears in the code. This pair has a corresponding map value which is used to check with the ordered list.
+i.e. map<int,pair<codeBlock,int>>
+
+Clicking on the snowman will cause the program to check if all the dropzones have been correctly filled. If he is clicked and there are zones that are incorrectly filled, then a deduction is made to the score, and the snowman lets the user know that something isn't in the right place (might allow for changing the color of the wrong code block). If there are unfilled zones, the snowman will tell the user to fill them up before checking, however this still counts as a deduction to the score.
+
+Clicking on the snowman with all the drop zones being correct will end the game and reward the user with a set number of points 
+
+
+<Name>Level1</Name>
+<Description>Level Description</Description>
+<Difficulty>Easy</Difficulty>
+
+<Level>
+<FixedBlock>
+int main()
+{
+</FixedBlock>
+<CodeBlock>
+cout<< "Hello World!";
+return 0;
+ghgh
+hjhj
+</CodeBlock>
+<CodeBlock>
+hjgjhuj
+bjghjhj
+</CodeBlock>
+<FixedBlock>
+}
+</FixedBlock>
+</Level>
+
+<Extras>
+<CodeBlock>
+blaaaaaah
+</CodeBlock>
+</Extras>
+
+

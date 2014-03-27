@@ -1,0 +1,45 @@
+/*level1*/
+<<Level_name_begin>>Level 1<<level_name_end>>
+<<code_block_begin>>cout<<"Hello";<<code_block_end>>
+
+int main(){
+
+
+@N  - Name For Level
+@D  - Description
+@H  - Hint
+@E  - Embedded text
+@B  - Code block
+@T  - Time limit
+@L  - Level difficulty
+
+
+
+Program decides how much of the "code blocks" are given to the player 
+depending on difficulty
+~ 30% on easy
+~ 60% on medium
+All text on hard
+
+
+
+
+
+<Name>Level1</Name>
+<Description>Level Description</Description>
+<Time>00:30</Time>
+
+
+
+
+@B
+cout<< "Hello World!";
+return 0;
+ghgh
+hjhj
+@B
+
+hjgjhuj
+bjghjhj
+
+}
