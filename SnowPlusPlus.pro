@@ -9,7 +9,7 @@ DEPENDPATH += . src
 INCLUDEPATH += . src
 
 # Input
-HEADERS += src/animationFrame.h \
+HEADERS += src/animationFrame.h \ 
            src/application.h \
            src/backdrop.h \
            src/blockPalette.h \
