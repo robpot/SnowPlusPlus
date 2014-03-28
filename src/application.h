@@ -8,6 +8,7 @@
 #include "codeFrame.h"
 #include "messageBox.h"
 #include "snowPlusPlus.h"
+#include "gameOverScreen.h"
 
 
 class application :public QWidget{
@@ -17,7 +18,7 @@ public:
    application(QWidget *parent=0);
 private:
    snowPlusPlus* game;
-
+   gameOverScreen* gameover;
 };
 
 
