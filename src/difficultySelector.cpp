@@ -30,5 +30,5 @@ void difficultySelector::paintEvent(QPaintEvent *) {
 }
 
 void difficultySelector::mousePressEvent(QMouseEvent *event) {
-   qDebug() << "BLAAAAAAAAAH";
+   //  qDebug() << "BLAAAAAAAAAH";
 }
