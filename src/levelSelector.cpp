@@ -4,8 +4,11 @@
 
 levelSelector::levelSelector(QWidget *parent) : QWidget(parent){
    setFixedSize(1024, 576);
-   directory = new QDir(":/levels");
-   QFileInfoList fileList(directory);
+   directory = new QDir("/levels");
+   QFileInfoList fileList;
+   QStringList filters;
+   filters<<"*.txt";
+   fileList=directory->entryInfoList(filters);
 
    // QDebug has been put here
    for(int i=0; i<fileList.size(); i++){
@@ -26,13 +29,13 @@ void levelSelector::paintEvent(QPaintEvent *) {
    QPainter painter(this);
    QRect rect(0,0,width(),height());
    switch(difficulty) {
-      case: 0	 
+      case 0:	 
 	 painter.drawImage(rect,QImage(":/images/resources/backdrop_winter.png"));
 	 break;
-      case: 1
+      case 1:
 	 painter.drawImage(rect,QImage(":/images/resources/backdrop_winter.png"));
 	 break;
-      case: 2
+      case 2:
 	 painter.drawImage(rect,QImage(":/images/resources/backdrop_winter.png"));
 	 break;
    }

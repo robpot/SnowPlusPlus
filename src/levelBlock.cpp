@@ -10,7 +10,7 @@ void levelBlock::paintEvent(QPaintEvent *) {
    painter.drawText(rect, Qt::AlignCenter,levelName);
 }
 
-void levelBlock::mousePressEvent(QMouseEvent *) {
+void levelBlock::mousePressEvent(QMouseEvent* event) {
    if(event->buttons() == Qt::LeftButton)
       emit levelSelected(levelName);
 }

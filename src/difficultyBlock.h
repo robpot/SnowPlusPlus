@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QPainter>
+#include <QMouseEvent>
 
 class difficultyBlock :public QWidget {
    Q_OBJECT
@@ -11,7 +12,7 @@ class difficultyBlock :public QWidget {
 public:
    difficultyBlock(QString textVal="", int blockDiff=0, QWidget *parent=0);
 protected:
-   void paintEvent(QPainteEvent *);
+   void paintEvent(QPaintEvent *);
    void mousePressEvent(QMouseEvent *);
 private:
    QString text;

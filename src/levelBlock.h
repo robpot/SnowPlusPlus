@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QPainter>
+#include <QMouseEvent>
 
 class levelBlock : public QWidget {
    Q_OBJECT
