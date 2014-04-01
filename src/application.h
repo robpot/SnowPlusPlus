@@ -9,6 +9,7 @@
 #include "messageBox.h"
 #include "snowPlusPlus.h"
 #include "gameOverScreen.h"
+#include "levelChooser.h"
 
 
 class application :public QWidget{
@@ -16,9 +17,12 @@ class application :public QWidget{
 
 public:
    application(QWidget *parent=0);
+public slots:
+   void levelSelected(QString);
 private:
    snowPlusPlus* game;
    gameOverScreen* gameover;
+   levelChooser* chooser;
 };
 
 

@@ -12,9 +12,14 @@ class levelChooser : public QWidget {
 
 public:
    levelChooser(QWidget *parent = 0);
+public slots:
+   void diffSelected(int);
+   void backButton();
 private:
    difficultySelector* diffSelector;
    levelSelector* levSelector;
+   bool dSelected;
+   void showHide();
 signals:
    void levelSelected(QString);
 };
