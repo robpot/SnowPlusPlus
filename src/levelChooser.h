@@ -7,16 +7,16 @@
 #include "difficultySelector.h"
 #include "levelSelector.h"
 
-class levelChooser :public QWidget {
+class levelChooser : public QWidget {
    Q_OBJECT
 
 public:
    levelChooser(QWidget *parent = 0);
 private:
    difficultySelector* diffSelector;
-   levelSelector* levelSelector;
+   levelSelector* levSelector;
 signals:
    void levelSelected(QString);
-}
+};
 
 #endif

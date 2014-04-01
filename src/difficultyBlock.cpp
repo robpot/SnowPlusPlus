@@ -11,24 +11,24 @@ void difficultyBlock::paintEvent(QPaintEvent *) {
    QPainter painter(this);
    QRect boundOne(0,0,547,height());
    QRect boundTwo(547,0,153,height());
-   painter.drawText(boudnOne, text, QTextOption(Qt::AlignLeft));
+   painter.drawText(boundOne, text, QTextOption(Qt::AlignLeft));
    //Change this image later please.
    QImage *image;
-   switch(blockDiff) {
-      case: 0
+   switch(difficulty) {
+      case 0:
 	 image = new QImage(":/images/resources/block.png");
 	 break;
-      case: 1
+      case 1:
 	 image = new QImage(":/images/resources/block.png");
 	 break;
-      case: 2
+      case 2:
 	 image = new QImage(":/images/resources/block.png");
 	 break;
    }
-   painter.drawImage(boundTwo, image);
+   painter.drawImage(boundTwo, *image);
 }
 
 void difficultyBlock::mousePressEvent(QMouseEvent *event) {
    if(event->buttons() == Qt::LeftButton)
-      emit difficultySelected(blockDiff);
+      emit difficultySelected(difficulty);
 }

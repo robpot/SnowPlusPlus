@@ -5,6 +5,7 @@
 #include <QString>
 #include <QPainter>
 #include <QGridLayout>
+#include <QLabel>
 #include "difficultyBlock.h"
 
 class difficultySelector :public QWidget {
@@ -15,7 +16,7 @@ public:
 protected:
    void paintEvent(QPaintEvent *e);
 private:
-   QList<*difficultyBlock> diffList;
+   QList<difficultyBlock*> diffList;
 signals:
    void difficultySelected(int);
 };
