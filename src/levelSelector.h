@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QStringList>
 #include <QFileInfoList>
+#include <QPushButton>
 #include "levelBlock.h"
 
 class levelSelector :public QWidget {
@@ -20,12 +21,13 @@ public slots:
 protected:
    void paintEvent(QPaintEvent *);
 private:
-   QList<levelBlock*> levelList;
    int difficulty;
    QStringList list;
    QDir *directory;
+   QList<levelBlock*> levelList;
 signals:
    void levelSelected(QString);
+   void backButton();
 };
 
 

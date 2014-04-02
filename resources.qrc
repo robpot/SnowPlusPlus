@@ -15,5 +15,10 @@
         <file>resources/goodjobbubble.png</file>
         <file>resources/scorebanner.png</file>
         <file>resources/snowflake.png</file>
+	<file>resources/spring.png</file>
+	<file>resources/summer.png</file>
+	<file>resources/winter.png</file>
+	<file>resources/difficultychoose.png</file>
+	<file>resources/levelchoose.png</file>
     </qresource>
 </RCC>

@@ -16,7 +16,14 @@ class parser {
    level getLevel();
   private:
    level lvl;
-   void parse(QTextStream *r);
+   QStringList *tagLib;
+   QStringList *notTagLib;
+   void parse(QString r);
+   void tagHandler(QString data, QString tag, int pos, int & jump);
+   bool isThisATag(QString data, int pos, int &endPos, QString &tag_type);
+   bool tagLibary(QString compare, bool &notATag);
+   QString goTillEndTag(QString data,QString tag, int i, int &k);
+   //void parse();
   protected:
 };
 

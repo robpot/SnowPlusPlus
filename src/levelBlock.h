@@ -11,6 +11,7 @@ class levelBlock : public QWidget {
 
 public:
    levelBlock(QString textVal="", QWidget *parent=0);
+   void changeText(QString);
 protected:
    void paintEvent(QPaintEvent *);
    void mousePressEvent(QMouseEvent *);
