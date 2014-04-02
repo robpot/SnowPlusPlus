@@ -81,6 +81,7 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
    if(tag == "<Name>"){
       qDebug() << "<Name Called>";
       lvl.name = goTillEndTag(data,tag,pos,jump);
+      qDebug() << lvl.name;
    }
    if(tag == "<FixedBlock>"){
       //lvl.addFixed( gotTillEndTag(data,pos,jump));
@@ -114,23 +115,25 @@ bool parser::isThisATag(QString data, int pos,int & endPos, QString & tag_type){
    
    for(int i=pos; i<data.size(); i++){
       compare +=data[i];   
-      qDebug() <<"I= " << i << data.size();
       
       if(data[i] == '<'){
+	 //qDebug() << "Found: <" << start_of_tag+1;
 	 tag = true;
 	 start_of_tag++;
       }
       if(data[i] == '>'){
-	 tag = false;
+	 //qDebug() << "Found: >" << end_of_tag+1;
 	 end_of_tag++;
       }
       
       if(tag == true){
 	 parser_tag += data[i];
+	 //qDebug() << parser_tag;
       }
       for(int j=0; j<notTagLib->size(); j++){
 	 //qDebug() << "J=" << j << notTagLib->size();
-	 if(parser_tag == notTagLib->at(i)){
+	 if(parser_tag == notTagLib->at(j)){
+	    qDebug() << "Rejected: "<<parser_tag;
 	    endPos = pos;
 	    tag_type  = "FALSE";
 	    return false;
@@ -138,8 +141,9 @@ bool parser::isThisATag(QString data, int pos,int & endPos, QString & tag_type){
       }
       for(int k=0; k<tagLib->size(); k++){
 	 //qDebug() << "K=" << k << tagLib->size();
-	 if(parser_tag == tagLib->at(i)){
+	 if(parser_tag == tagLib->at(k)){
 	    endPos = i;
+	    qDebug() <<"Accepted :" << parser_tag;
 	    tag_type = parser_tag;
 	    return true;
 	 }
@@ -160,17 +164,22 @@ QString parser::goTillEndTag(QString data, QString tag, int i, int &k){
    QString betweenTags;
    k =i;
    QString endTag;
+   qDebug() << "Start Pos" << i;
    for(int j=i; j<data.size(); j++){
       betweenTags += data[j];
-      if(data[i] == '<'){
+      
+      if(data[j] == '<'){
 	 if(isThisATag(data,j,k,endTag)){
 	    QString compare = tag;
 	    compare.insert(1,'/');
+	    qDebug() <<"We Want "<<compare << " We have " << endTag;
 	    if(compare == endTag){
 	       return betweenTags;
 	    }
 	 }
       }
    }
+   qDebug() <<"Endpos "<< k;
+   qDebug() <<"Between size" <<betweenTags.size() << " data size " << data.size();
    return "ERROR: "+ tag + " Is Missing " + tag.insert(1,'/');
 }
