@@ -7,8 +7,8 @@
 //Total space for blocks is 3 columns 7 rows.
 
 //Add a input for dynamic construction later.
-//codeFrame::codeFrame(QStringList code , QWidget *parent=0 ): QWidget(parent){
-codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
+codeFrame::codeFrame(level *l,QWidget *parent, dragStorage *s): QWidget(parent){
+   lvl = l;
    setFixedSize(616, 461);
    //default orientation
    defX = 20;
@@ -18,18 +18,8 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
    //used in pages
    pages.push_back(0);
    curPage = 0;
-   
-   //****************************
-   //Temp code for this Sprint
-   codeList << "Label int main() {" << "Spacer";
-   for(int i=1; i<3; i++){
-      QString *j = new QString(i);
-      j->append("Place Block Here");
-      codeList << *j ;
-   }
-   codeList << "Spacer" << "Label }";
-   //**************************
 
+   /*
    for(int i=0; i<codeList.size(); i++){
       if(isLabel(codeList.at(i))){
 	 QString l = codeList.at(i);
@@ -47,9 +37,22 @@ codeFrame::codeFrame(QWidget *parent, dragStorage *s): QWidget(parent){
 	 connect(z, SIGNAL(newSize()), this, SLOT(resize()));
 	 zones.insert(std::pair<int, dropZone*> (i,z));
       }
+      }
+   */
+   for(int i=0; i< lvl->ordered.size(); i++){
+      if(lvl->codeBlocks.find(i) != lvl->codeBlocks.end()){
+	 dropZone *z = new dropZone("Drop Code Here", i,this);
+	 z->setDragStorage(store);
+	 connect(z, SIGNAL(newSize()), this, SLOT(resize()));
+	 zones.insert(std::pair<int, dropZone*> (i,z));
+      }
+      if(lvl->fixedBlocks.find(i) != lvl->fixedBlocks.end()){
+	 QLabel *r = new QLabel( lvl->fixedBlocks.at(i) , this);
+	 r->setBaseSize(152,12);
+	 others.insert(std::pair<int,QLabel*> (i,r));
+      }
    }
    buildPage();
-   
 }
 
 void codeFrame::paintEvent(QPaintEvent *){
@@ -88,7 +91,7 @@ void codeFrame::buildPage(int start){
    // need an ordered list for show.
 
    
-   for(int l=0; l<codeList.size(); l++){
+   for(int l=0; l < lvl->ordered.size(); l++){
       if(zones.find(l) != zones.end()){
 	 zones[l]->hide();
       }
@@ -103,7 +106,7 @@ void codeFrame::buildPage(int start){
    int i = start;
    bool morePages = false;
    
-   while(i<codeList.size() && !morePages){
+   while(i < lvl->ordered.size() && !morePages){
       if(Y < 400){ //Show
 	 if(others.find(i) != others.end()){
 	    others[i]->move(X,Y);
@@ -138,13 +141,6 @@ void codeFrame::buildPage(int start){
 }
 
 
-bool codeFrame::isLabel(const QString &s){
-   return s.contains("Label");
-}
-bool codeFrame::isSpacer(const QString &s){
-   return s.contains("Spacer");   
-}
-
 void codeFrame::pageUp(){
    if(curPage-1 >= 0){
       curPage--;
@@ -152,7 +148,7 @@ void codeFrame::pageUp(){
    }
 }
 void codeFrame::pageDown(){
-   if( (curPage+1 < pages.size()) && (curPage+1 < codeList.size()) ){
+   if( (curPage+1 < pages.size()) && (curPage+1 < lvl->ordered.size()) ){
       curPage++;
       buildPage(curPage);
    }

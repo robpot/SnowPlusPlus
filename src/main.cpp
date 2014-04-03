@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
   a.show();
 
   //TEST********
-  parser p("testlevel.txt");
+  //parser p("testlevel.txt");
   
   
   return app.exec();

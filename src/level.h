@@ -17,6 +17,10 @@ class level {
    QString name;
    //Orderd List (Defines the order of apperance)
    QList<QString> ordered;
+   //Map of code blocks
+   std::map<int,QString> codeBlocks;
+   //Map of fixed blocks
+   std::map<int,QString> fixedBlocks;
    //Time
    int time;
    //Base score

@@ -10,7 +10,7 @@
 #include "snowPlusPlus.h"
 #include "gameOverScreen.h"
 #include "levelChooser.h"
-
+#include "parser.h"
 
 class application :public QWidget{
     Q_OBJECT
@@ -23,6 +23,7 @@ private:
    snowPlusPlus* game;
    gameOverScreen* gameover;
    levelChooser* chooser;
+   parser* parse;
 };
 
 

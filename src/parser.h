@@ -3,6 +3,7 @@
 
 #ifndef PARSER_H
 #define PARSER_H
+#include <QObject>
 #include <QList>
 #include <QString>
 #include <QFile>
@@ -10,9 +11,10 @@
 #include "level.h"
 class level;
 
-class parser {
+class parser : public QObject{
+   Q_OBJECT
   public:
-   parser(QString s);
+   parser(QObject *o =0);
    level getLevel();
   private:
    level lvl;
@@ -27,6 +29,8 @@ class parser {
    QString cutEnds(QString data);
    //void parse();
   protected:
+   public slots:
+   void loadLevel(QString file);
 };
 
 #endif

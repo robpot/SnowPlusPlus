@@ -11,6 +11,7 @@
 #include "backdrop.h"
 #include "scorebox.h"
 #include "dragStorage.h"
+#include "level.h"
 #include <QMessageBox>
 
 
@@ -18,7 +19,7 @@ class snowPlusPlus :public QWidget{
     Q_OBJECT
 
 public:
-   snowPlusPlus(QWidget *parent=0);
+   snowPlusPlus(level *lvl, QWidget *parent=0);
 //public slots:
 //   void gameEnd();
 protected:

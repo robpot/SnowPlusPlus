@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QStringList>
 #include <QDir>
-parser::parser(QString s){
+parser::parser(QObject *o) : QObject(o){
    subParsing = false;
    levelParse = false;
    extraParse = false;
@@ -21,18 +21,7 @@ parser::parser(QString s){
 
    notTagLib = new QStringList(notTags);
    
-   QFile* data =  new QFile();
-   QDir::setCurrent(QDir::currentPath() + "/levels");
-   qDebug() << s;
-   data->setFileName(s);
    
-   if(data->open(QIODevice::ReadWrite | QIODevice::Text))
-   {
-      //QTextStream *read = new QTextStream(&data);
-      QString g(data->readAll());
-      data->close();
-      parse(g);
-   }
    //parse();
    
    
@@ -59,7 +48,7 @@ void parser::parse(QString data){
       }
    }
 
-   
+   qDebug() << lvl.ordered;
    
    //QString look = r->readAll();
    
@@ -77,30 +66,24 @@ void parser::parse(QString data){
 
 
 void parser::tagHandler(QString data, QString tag, int pos, int &jump){
-   //  "<Name>","</Name>","<FixedBlock>","</FixedBlock>",
-//	     "<CodeBlock>","</CodeBlock>","<Level>","</Level>"
-//	     ,"<Extras>","</Extras>","<Hints>","</Hints>"
-//	     ,"<Description>","</Description>"
-//	     ,"<Difficulty>", "</Difficulty>"
    if(tag == "<Name>"){
       qDebug() << "<Name Called>";
       lvl.name = goTillEndTag(data,tag,pos,jump);
       qDebug() << lvl.name;
    }
    if((tag == "<FixedBlock>") && subParsing && levelParse){
-      qDebug() << goTillEndTag(data,tag,pos,jump);
-      //lvl.addToOrder();
-      //lvl.addFixed( gotTillEndTag(data,pos,jump));
+      QString fixed = goTillEndTag(data,tag,pos,jump);
+      lvl.ordered.push_back(fixed);
+      lvl.fixedBlocks.insert(std::pair<int,QString> (lvl.ordered.size()-1, fixed));
    }
    if((tag == "<CodeBlock>") && subParsing ){
       if(levelParse){
-	 qDebug() << goTillEndTag(data,tag,pos,jump);
-	 //lvl.addToOrder();
-	 //lvl.addCode(goTillEndTag(data,pos,jump));
+	 QString code = goTillEndTag(data,tag,pos,jump);
+	 lvl.ordered.push_back(code);
+	 lvl.codeBlocks.insert(std::pair<int,QString> (lvl.ordered.size()-1, code));
       }
-      if(extraParse){
+      if(extraParse){ // extras not being used this sprint
 	 qDebug() << goTillEndTag(data,tag,pos,jump);
-	 //lvl.addToExtraCodeBlocks
       }
    }
    if(tag == "<Level>"){
@@ -225,4 +208,19 @@ QString parser::cutEnds(QString data){
       data.remove(0,1);
    }
    return data;
+}
+
+void parser::loadLevel(QString file){
+   QFile* data =  new QFile();
+   QDir::setCurrent(QDir::currentPath() + "/levels");
+   qDebug() << file;
+   data->setFileName(file);
+   
+   if(data->open(QIODevice::ReadWrite | QIODevice::Text))
+   {
+      //QTextStream *read = new QTextStream(&data);
+      QString g(data->readAll());
+      data->close();
+      parse(g);
+   }
 }

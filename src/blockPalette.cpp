@@ -6,7 +6,7 @@
 // number and block_per_page variables should be determined
 // by the parser program, as well as the information for
 // the code blocks in the push_back part of the for loop
-blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
+blockPalette::blockPalette(level * lvl, QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);
    setAcceptDrops(true);
    top_arrow = new QImage(":/images/resources/arrow.png");
@@ -17,6 +17,19 @@ blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    current_page = 1;
    total_pages = (int)ceil((double)number/block_per_page);
 
+   /*
+   for(int i=0; i<lvl->ordered.size(); i++){
+      if(lvl->codeBlocks.find(i) != lvl->codeBlocks.end()){
+	 blocks.push_back(new codeBlock(lvl->codeBlocks.at(i),i,this));
+	 blocks.last()->setPalettePos(i);
+	 blocks.last()->move(4,44+((blocks.last()->height()+4)*i));
+	 if(i>=block_per_page)
+	    blocks.last()->hide();
+      }
+   }
+
+   */
+   
    blocks.push_back(new codeBlock("cout<<\"Hello World\";", 0, this));
    blocks.last()->setPalettePos(0);
    blocks.last()->move(4,44+((blocks.last()->height()+4)*0));
@@ -31,7 +44,8 @@ blockPalette::blockPalette(QWidget *parent) : QWidget(parent){
    blocks.last()->setPalettePos(2);
    blocks.last()->move(4,44+((blocks.last()->height()+4)*2));
    if(2>=block_per_page)
-     blocks.last()->hide();
+   blocks.last()->hide();
+   
    page_height = (blocks.last()->height()+4)*block_per_page;
 }
 

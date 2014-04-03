@@ -8,13 +8,14 @@
 #include <QMouseEvent>
 #include "codeBlock.h"
 #include "dragStorage.h"
+#include "level.h"
 
 class blockPalette :public QWidget{
     Q_OBJECT
 
 public:
-    blockPalette(QWidget *parent=0);
-    void setDragStorage(dragStorage* s) { store = s; }
+   blockPalette(level * lvl, QWidget *parent=0);
+   void setDragStorage(dragStorage* s) { store = s; }
     codeBlock* getBlocks(int i) { return blocks[i]; }
 public slots:
     void resizeList(int);

@@ -2,15 +2,15 @@
 
 #include "snowPlusPlus.h"
 
-snowPlusPlus::snowPlusPlus(QWidget *parent) : QWidget(parent){
+snowPlusPlus::snowPlusPlus(level *lvl,QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
    timeLimit=new QTime(0,0,30,0);
    storage = new dragStorage(this);
    back = new backdrop(this);
-   palette = new blockPalette(this);
+   palette = new blockPalette(lvl,this);
    palette->setDragStorage(storage);
-   frame = new codeFrame(this,storage);
+   frame = new codeFrame(lvl,this,storage);
    message = new messageBox(this);
    snow = new snowman(this,timeLimit->minute(),timeLimit->second());
    score = new scorebox(this,timeLimit->minute(),timeLimit->second());
