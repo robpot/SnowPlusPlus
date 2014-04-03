@@ -26,6 +26,8 @@ private:
    QStringList list;
    QDir *directory;
    QList<levelBlock*> levelList;
+   QGridLayout* layout;
+   QPushButton* bacButton;
 signals:
    void levelSelected(QString);
    void backButton();

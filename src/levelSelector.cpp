@@ -5,17 +5,15 @@
 
 levelSelector::levelSelector(QWidget *parent) : QWidget(parent){
    setFixedSize(1024, 576);
-   QPushButton *bacButton = new QPushButton(this);
+   bacButton = new QPushButton("<-- Back",this);
    connect(bacButton, SIGNAL(clicked()), this, SIGNAL(backButton()));
-   //  connect(bacButton, SIGNAL(clicked()), this, SLOT(backButtonPressed()));
    directory = new QDir("/levels");
-   QGridLayout* layout = new QGridLayout();
+   layout = new QGridLayout();
    for(int i = 0; i < 12; i++){
       levelList.append(new levelBlock("",this));
       connect(levelList[i],SIGNAL(levelSelected(QString)),
 	      this,SLOT(lvlSelected(QString)));
       layout->addWidget(levelList[i], floor(i/4), i%4);
-      //levelList[i]->hide();
    }
    layout->addWidget(bacButton, 3, 0);
    setLayout(layout);
@@ -66,9 +64,9 @@ void levelSelector::difficultySelected(int diff) {
 
    for(int i=0;i<list.size(); i++){
       levelList[i]->changeText(list[i]);
-      //levelList[i]->show();
    }
-
+   for(int i = list.size(); i < 12; i++)
+      levelList[i]->changeText("");
 }
 
 void levelSelector::lvlSelected(QString s) {
