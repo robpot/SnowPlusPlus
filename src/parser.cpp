@@ -22,7 +22,7 @@ parser::parser(QString s){
    notTagLib = new QStringList(notTags);
    
    QFile* data =  new QFile();
-   //QDir::setCurrent(QDir::currentPath() + "/levels");
+   QDir::setCurrent(QDir::currentPath() + "/levels");
    qDebug() << s;
    data->setFileName(s);
    
