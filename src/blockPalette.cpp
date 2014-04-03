@@ -17,24 +17,29 @@ blockPalette::blockPalette(level * lvl, QWidget *parent) : QWidget(parent){
    current_page = 1;
    total_pages = (int)ceil((double)number/block_per_page);
 
-   /*
-   for(int i=0; i<lvl->ordered.size(); i++){
+   QList<QString> bloks; 
+   for(int i=0; i<lvl->ordered.size(); i++){ 
       if(lvl->codeBlocks.find(i) != lvl->codeBlocks.end()){
-	 blocks.push_back(new codeBlock(lvl->codeBlocks.at(i),i,this));
-	 blocks.last()->setPalettePos(i);
-	 blocks.last()->move(4,44+((blocks.last()->height()+4)*i));
-	 if(i>=block_per_page)
-	    blocks.last()->hide();
+	 bloks.push_back(lvl->codeBlocks.at(i));
       }
    }
 
-   */
+   for(int i=0; i<bloks.size(); i++){
+      blocks.push_back(new codeBlock(bloks[i], i, this));
+      blocks.last()->setPalettePos(i);
+      blocks.last()->move(4, 44+((blocks.last()->height()+4)*i));
+      if(i>=block_per_page){
+	 blocks.last()->hide();
+      }
+   }
    
+   /*
    blocks.push_back(new codeBlock("cout<<\"Hello World\";", 0, this));
    blocks.last()->setPalettePos(0);
    blocks.last()->move(4,44+((blocks.last()->height()+4)*0));
    if(0>=block_per_page)
-     blocks.last()->hide();
+      blocks.last()->hide();
+   
    blocks.push_back(new codeBlock("return 0;", 1, this));
    blocks.last()->setPalettePos(1);
    blocks.last()->move(4,44+((blocks.last()->height()+4)*1));
@@ -45,7 +50,7 @@ blockPalette::blockPalette(level * lvl, QWidget *parent) : QWidget(parent){
    blocks.last()->move(4,44+((blocks.last()->height()+4)*2));
    if(2>=block_per_page)
    blocks.last()->hide();
-   
+   */
    page_height = (blocks.last()->height()+4)*block_per_page;
 }
 
