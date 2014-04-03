@@ -83,5 +83,6 @@ void levelSelector::lvlSelected(QString s) {
 	 s = "hard/" + s;
 	 break;
    }
+   s += ".txt";
    emit levelSelected(s);
 }
