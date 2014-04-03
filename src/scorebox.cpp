@@ -1,7 +1,10 @@
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
 //scorebox.cpp
 
 #include "scorebox.h"
 
+//Creates timers and a layout which holds the countdown timer and the score 
 scorebox::scorebox(QWidget *parent, int min, int sec) : QWidget(parent){
     setFixedSize(204,58);
     QGridLayout *layout=new QGridLayout();
@@ -18,6 +21,7 @@ scorebox::scorebox(QWidget *parent, int min, int sec) : QWidget(parent){
     connect(timeElapsed,SIGNAL(timeout()),this,SIGNAL(gameOver()));
 }
 
+//Updates the clock
 void scorebox::paintEvent(QPaintEvent *){
     QPainter painter(this);
     painter.setPen(QPen(QBrush(Qt::black),3));

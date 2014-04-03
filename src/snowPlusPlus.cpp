@@ -1,7 +1,10 @@
-
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
+//snowPlusPlus.cpp
 
 #include "snowPlusPlus.h"
 
+//builds the sub QWidgets that are displayed for the game. 
 snowPlusPlus::snowPlusPlus(level *lvl,QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
@@ -32,6 +35,7 @@ snowPlusPlus::snowPlusPlus(level *lvl,QWidget *parent) : QWidget(parent){
    score->move(820,0);
 }
 
+//Draws an outline for the whole applcation. 
 void snowPlusPlus::paintEvent(QPaintEvent *){
     QPainter painter(this);
     painter.drawRect(1,1 , width()-2, height()-2);
@@ -43,11 +47,13 @@ void snowPlusPlus::gameEnd(){
 }
 */
 
+//Allows dragEnterEvents
 void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)
 {
    event->acceptProposedAction();
 }
 
+//Allows drop events, participates int the drag and drop 
 void snowPlusPlus::dropEvent(QDropEvent *event)
 {
    qDebug()<<"Drop event!";

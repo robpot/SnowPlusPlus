@@ -1,5 +1,8 @@
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
+//Parses using html like tags, Ignores all text which is not between tags.
+//Build the level class from a text file which it reads from a folder.
 //Parser.h
-//Compiles information from a text file into a level class.
 
 #ifndef PARSER_H
 #define PARSER_H

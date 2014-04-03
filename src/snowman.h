@@ -1,3 +1,8 @@
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
+//The snowman class is an animation which melts over time. The snowman class
+//is also clickable and is designed to give hints to the user. 
+//snowman.h
 #ifndef SNOWMAN_H
 #define SNOWMAN_H
 

@@ -1,3 +1,7 @@
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
+//The score box contains a score value for display and the lcd timer. 
+//scorebox.h
 #ifndef SCOREBOX_H
 #define SCOREBOX_H
 

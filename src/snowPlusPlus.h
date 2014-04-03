@@ -1,3 +1,7 @@
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
+//Header for the snowPlusPlus class. This class is responsable for generating the level that is playable.
+//snowPlusPlus.h
 #ifndef SNOWPLUSPLUS_H
 #define SNOWPLUSPLUS_H
 
