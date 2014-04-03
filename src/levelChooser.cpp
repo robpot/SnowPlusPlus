@@ -22,11 +22,11 @@ void levelChooser::backButton() {
 }
 
 void levelChooser::showHide() {
-  if (!dSelected) {
+   if (!dSelected) {
       diffSelector->show();
       levSelector->hide();
    } else {
       levSelector->show();
       diffSelector->hide();
-  }
+   }
 }
