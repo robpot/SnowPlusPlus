@@ -13,7 +13,7 @@ codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(pa
            parent,SIGNAL(sendUpBlock(codeBlock*)));
    // removeFromList does not exist anymore DO SOMETHING
    //connect(this,SIGNAL(sendUpBlock(codeBlock*)),
-   //        parent,SLOT(removeFromList(codeBlock*)));
+   //       parent,SLOT(removeFromList(codeBlock*)));
    connect(this,SIGNAL(triggerResize(int)),
 	   parent,SLOT(resizeList(int)));
 }
