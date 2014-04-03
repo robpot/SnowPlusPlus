@@ -5,6 +5,9 @@
 #include <QStringList>
 #include <QDir>
 parser::parser(QString s){
+   subParsing = false;
+   levelParse = false;
+   extraParse = false;
    QStringList tags;
    tags << "<Name>" <<"</Name>"<<"<FixedBlock>"<<"</FixedBlock>"
 	<<"<CodeBlock>"<<"</CodeBlock>"<<"<Level>"<<"</Level>"
@@ -72,6 +75,7 @@ void parser::parse(QString data){
    
 }
 
+
 void parser::tagHandler(QString data, QString tag, int pos, int &jump){
    //  "<Name>","</Name>","<FixedBlock>","</FixedBlock>",
 //	     "<CodeBlock>","</CodeBlock>","<Level>","</Level>"
@@ -83,16 +87,42 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
       lvl.name = goTillEndTag(data,tag,pos,jump);
       qDebug() << lvl.name;
    }
-   if(tag == "<FixedBlock>"){
+   if((tag == "<FixedBlock>") && subParsing && levelParse){
+      qDebug() << goTillEndTag(data,tag,pos,jump);
+      //lvl.addToOrder();
       //lvl.addFixed( gotTillEndTag(data,pos,jump));
    }
-   if(tag == "<CodeBlock>"){
-      //lvl.addCode(goTillEndTag(data,pos,jump));
+   if((tag == "<CodeBlock>") && subParsing ){
+      if(levelParse){
+	 qDebug() << goTillEndTag(data,tag,pos,jump);
+	 //lvl.addToOrder();
+	 //lvl.addCode(goTillEndTag(data,pos,jump));
+      }
+      if(extraParse){
+	 qDebug() << goTillEndTag(data,tag,pos,jump);
+	 //lvl.addToExtraCodeBlocks
+      }
    }
    if(tag == "<Level>"){
+      qDebug() <<  "Level called";
+      QString sub = goTillEndTag(data,tag,pos,jump);
+      qDebug() << sub; 
+      subParsing = true;
+      levelParse = true;
+      parse(sub);
+      subParsing = false;
+      levelParse = false;
       // call sub stuff
    }
    if(tag == "<Extras>" ){
+      qDebug() << "Extras called";
+      QString sub = goTillEndTag(data,tag,pos,jump);
+      subParsing = true;
+      extraParse = true;
+      parse(sub);
+      subParsing = false;
+      extraParse = false;
+      //subParsing = true;
       //call sub stuff
    }
    if(tag == "<Hints>"){
@@ -104,7 +134,10 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
    if(tag == "<Difficulty>"){
       lvl.diff =  goTillEndTag(data,tag,pos,jump);
    }
+
 }
+
+
 bool parser::isThisATag(QString data, int pos,int & endPos, QString & tag_type){
    bool tag= false;
    int start_of_tag = 0;
@@ -133,7 +166,7 @@ bool parser::isThisATag(QString data, int pos,int & endPos, QString & tag_type){
       for(int j=0; j<notTagLib->size(); j++){
 	 //qDebug() << "J=" << j << notTagLib->size();
 	 if(parser_tag == notTagLib->at(j)){
-	    qDebug() << "Rejected: "<<parser_tag;
+	    //qDebug() << "Rejected: "<<parser_tag;
 	    endPos = pos;
 	    tag_type  = "FALSE";
 	    return false;
@@ -143,7 +176,7 @@ bool parser::isThisATag(QString data, int pos,int & endPos, QString & tag_type){
 	 //qDebug() << "K=" << k << tagLib->size();
 	 if(parser_tag == tagLib->at(k)){
 	    endPos = i;
-	    qDebug() <<"Accepted :" << parser_tag;
+	    //qDebug() <<"Accepted :" << parser_tag;
 	    tag_type = parser_tag;
 	    return true;
 	 }
@@ -164,7 +197,7 @@ QString parser::goTillEndTag(QString data, QString tag, int i, int &k){
    QString betweenTags;
    k =i;
    QString endTag;
-   qDebug() << "Start Pos" << i;
+   //qDebug() << "Start Pos" << i;
    for(int j=i; j<data.size(); j++){
       betweenTags += data[j];
       
@@ -172,9 +205,9 @@ QString parser::goTillEndTag(QString data, QString tag, int i, int &k){
 	 if(isThisATag(data,j,k,endTag)){
 	    QString compare = tag;
 	    compare.insert(1,'/');
-	    qDebug() <<"We Want "<<compare << " We have " << endTag;
+	    //qDebug() <<"We Want "<<compare << " We have " << endTag;
 	    if(compare == endTag){
-	       return betweenTags;
+	       return cutEnds(betweenTags);
 	    }
 	 }
       }
@@ -182,4 +215,14 @@ QString parser::goTillEndTag(QString data, QString tag, int i, int &k){
    qDebug() <<"Endpos "<< k;
    qDebug() <<"Between size" <<betweenTags.size() << " data size " << data.size();
    return "ERROR: "+ tag + " Is Missing " + tag.insert(1,'/');
+}
+
+QString parser::cutEnds(QString data){
+   if(data.endsWith('<')){
+      data.chop(1);
+   }
+   if(data.startsWith('>')){
+      data.remove(0,1);
+   }
+   return data;
 }

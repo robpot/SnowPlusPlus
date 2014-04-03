@@ -16,6 +16,7 @@ class parser {
    level getLevel();
   private:
    level lvl;
+   bool subParsing, levelParse, extraParse; 
    QStringList *tagLib;
    QStringList *notTagLib;
    void parse(QString r);
@@ -23,6 +24,7 @@ class parser {
    bool isThisATag(QString data, int pos, int &endPos, QString &tag_type);
    bool tagLibary(QString compare, bool &notATag);
    QString goTillEndTag(QString data,QString tag, int i, int &k);
+   QString cutEnds(QString data);
    //void parse();
   protected:
 };
