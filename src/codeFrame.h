@@ -1,3 +1,6 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
+
 //codeFrame.h
 #ifndef CODEFRAME_H
 #define CODEFRAME_H

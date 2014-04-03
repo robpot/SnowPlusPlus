@@ -1,3 +1,5 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
 #include "blockPalette.h"
 
 // Construct the blockPalette widget
@@ -112,17 +114,17 @@ void blockPalette::setPage(int pages) {
    for(int i=0; i < blocks.size(); i++)
       blocks[i]->move(4,-(pages*page_height)+(44+((blocks.last()->height()+4)*i)));
 }
-
+// Resizes the list once a block is dragged from this area
 void blockPalette::resizeList(int x)
 {
    blocks[x]->deactivate();
 }
-
+// Used when a drag event starts 
 void blockPalette::dragEnterEvent(QDragEnterEvent *event)
 {
    event->acceptProposedAction();
 }
-
+//used when a drop event occours
 void blockPalette::dropEvent(QDropEvent *event)
 {
    qDebug()<<"Drop event!";

@@ -1,3 +1,5 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014 
 #ifndef BACKDROP_H
 #define BACKDROP_H
 

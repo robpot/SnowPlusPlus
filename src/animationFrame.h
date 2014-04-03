@@ -1,4 +1,6 @@
-//Empty header for animationFrame
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014 
+
 #ifndef ANIMATIONFRAME_H
 #define ANIMATIONFRAME_H
 

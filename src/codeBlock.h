@@ -1,3 +1,6 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
+
 #ifndef CODEBLOCK_H
 #define CODEBLOCK_H
 

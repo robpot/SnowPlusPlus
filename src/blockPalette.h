@@ -1,3 +1,8 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
+//BlockPallete is used to display the blocks that are selectable
+//It displays them in pages and removes them once they are selected
+//and dropped.
 #ifndef BLOCKPALETTE_H
 #define BLOCKPALETTE_H
 
