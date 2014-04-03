@@ -14,7 +14,7 @@ void levelBlock::paintEvent(QPaintEvent *) {
 }
 
 void levelBlock::mousePressEvent(QMouseEvent* event) {
-   if(event->buttons() == Qt::LeftButton)
+   if((levelName != "") && (event->buttons() == Qt::LeftButton))
       emit levelSelected(levelName);
 }
 

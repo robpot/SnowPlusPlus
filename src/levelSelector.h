@@ -18,6 +18,7 @@ public:
    levelSelector(QWidget *parent=0);
 public slots:
    void difficultySelected(int);
+   void lvlSelected(QString);
 protected:
    void paintEvent(QPaintEvent *);
 private:

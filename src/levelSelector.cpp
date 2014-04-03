@@ -7,13 +7,15 @@ levelSelector::levelSelector(QWidget *parent) : QWidget(parent){
    setFixedSize(1024, 576);
    QPushButton *bacButton = new QPushButton(this);
    connect(bacButton, SIGNAL(clicked()), this, SIGNAL(backButton()));
+   //  connect(bacButton, SIGNAL(clicked()), this, SLOT(backButtonPressed()));
    directory = new QDir("/levels");
    QGridLayout* layout = new QGridLayout();
    for(int i = 0; i < 12; i++){
       levelList.append(new levelBlock("",this));
       connect(levelList[i],SIGNAL(levelSelected(QString)),
-	      this,SIGNAL(levelSelected(QString)));
+	      this,SLOT(lvlSelected(QString)));
       layout->addWidget(levelList[i], floor(i/4), i%4);
+      //levelList[i]->hide();
    }
    layout->addWidget(bacButton, 3, 0);
    setLayout(layout);
@@ -39,7 +41,19 @@ void levelSelector::paintEvent(QPaintEvent *) {
 
 void levelSelector::difficultySelected(int diff) {
    difficulty = diff;
-   directory->setPath("levels");
+   switch(diff) {
+      case 0:
+	 directory->setPath("levels/easy");
+	 break;
+      case 1:
+	 directory->setPath("levels/medium");
+	 break;
+      case 2:
+	 directory->setPath("levels/hard");
+	 break;
+      default:
+	 directory->setPath("levels");
+   }
    QFileInfoList fileList;
    QStringList filters;
    filters<<"*.txt";
@@ -52,6 +66,22 @@ void levelSelector::difficultySelected(int diff) {
 
    for(int i=0;i<list.size(); i++){
       levelList[i]->changeText(list[i]);
+      //levelList[i]->show();
    }
 
+}
+
+void levelSelector::lvlSelected(QString s) {
+   switch(difficulty) {
+      case 0:
+	 s = "easy/" + s;
+	 break;
+      case 1:
+	 s = "medium/" + s;
+	 break;
+      case 2:
+	 s = "hard/" + s;
+	 break;
+   }
+   emit levelSelected(s);
 }
