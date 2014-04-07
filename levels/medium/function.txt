@@ -1,0 +1,25 @@
+<Name>Function</Name>
+<Description>Design a function that will add two numbers together</Description>
+<Difficulty>Medium</Difficulty>
+
+<Level>
+<FixedBlock>#include <iostream>
+using namespace std;
+</FixedBlock>
+<FixedBlock>void addition(int a, int b) {</FixedBlock>
+<CodeBlock>cout << b + a << endl;</CodeBlock>
+<FixedBlock>}
+
+int Main() {</FixedBlock>
+<CodeBlock>int x = 5;</CodeBlock>
+<CodeBlock>int y = 9;</CodeBlock>
+<CodeBlock>addition(x, y);</CodeBlock>
+<CodeBlock>return 0;</CodeBlock>
+<FixedBlock>}</FixedBlock>
+</Level>
+
+<Extras>
+<CodeBlock>return;</CodeBlock>
+</Extras>
+
+<Hints>Meow</Hints>
