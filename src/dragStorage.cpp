@@ -1,3 +1,10 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014 
+//animation.cpp
+// This holds the temporary information from the block that
+// is being dragged.
+//
+
 #include "dragStorage.h"
 #include <QDebug>
 

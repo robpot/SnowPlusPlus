@@ -1,3 +1,5 @@
+//Ein, Jahson, Jesze, Rob, Steven
+//Spring 2014
 //codeFrame.cpp
 #include "codeFrame.h"
 #include <QVBoxLayout>
@@ -37,6 +39,8 @@ codeFrame::codeFrame(level l,QWidget *parent, dragStorage *s): QWidget(parent){
    buildPage();
 }
 
+// Used for painting the dropspacs and arrows for the codeFrame area.
+
 void codeFrame::paintEvent(QPaintEvent *){
    QPainter painter(this);
    QRect rect (0,0,width(),height());
@@ -53,7 +57,7 @@ void codeFrame::paintEvent(QPaintEvent *){
    
    
 }
-
+// used for pressing the arrow to change pages 
 void codeFrame::mousePressEvent(QMouseEvent *e){
    int ypos = e->pos().y();
    if(e->button() == Qt::LeftButton){
@@ -111,13 +115,14 @@ void codeFrame::buildPage(int start){
    }
 }
 
-
+// changes page up
 void codeFrame::pageUp(){
    if(curPage-1 >= 0){
       curPage--;
       buildPage(curPage);
    }
 }
+//changes page down
 void codeFrame::pageDown(){
    if( (curPage+1 < pages.size()) && (curPage+1 < lvl.ordered.size()) ){
       curPage++;
@@ -125,6 +130,7 @@ void codeFrame::pageDown(){
    }
    
 }
+// resizes page
 void codeFrame::resize(){
    buildPage(pages[curPage]);
 }

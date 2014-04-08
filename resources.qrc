@@ -15,6 +15,7 @@
         <file>resources/goodjobbubble.png</file>
         <file>resources/scorebanner.png</file>
         <file>resources/snowflake.png</file>
+	<file>resources/snowflake_dead.png</file>
         <file>resources/spring.png</file>
         <file>resources/summer.png</file>
         <file>resources/winter.png</file>
@@ -38,5 +39,10 @@
         <file>resources/tut11.png</file>
         <file>resources/tutbackdrop.png</file>
         <file>resources/continuebutton1.png</file>
+	<file>resources/skip1.png</file>
+	<file>resources/skip2.png</file>
+	<file>resources/backdrop_spring.png</file>
+	<file>resources/backdrop_summer.png</file>
+
     </qresource>
 </RCC>

@@ -19,7 +19,6 @@ public:
    difficultySelector(QWidget *parent=0);
 protected:
    void paintEvent(QPaintEvent *e);
-   void mousePressEvent(QMouseEvent *);
 private:
    QList<difficultyBlock*> diffList;
 signals:

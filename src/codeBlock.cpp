@@ -1,8 +1,12 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
 //codeBlock.cpp
 
 #include "codeBlock.h"
 #include <QDebug>
-
+// Constructor that creates the codeblock, with each code block
+// having the blockId and the text within the block.
+// Connects to relevent parents upon signals
 codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(parent){
    setFixedSize(196,64);
    text = textval;
@@ -15,23 +19,24 @@ codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(pa
    connect(this,SIGNAL(triggerResize(int)),
 	   parent,SLOT(resizeList(int)));
 }
+
 codeBlock::codeBlock(codeBlock & c, QWidget *parent) : QWidget(parent), text(c.getID()) ,palette_pos(c.getPalettePos()) ,numLines(c.getNumLines()), ID(c.getIDNum()) ,active(c.isActive())  {}
 
-
+// greys outs codeBlocks after they are moved to codeFrame
 void codeBlock::deactivate()
 {
    active = false;
    update();
    
 }
-
+//toggles from grey back to normal when beign drawn in codeFrame
 void codeBlock::activate()
 {
    
    active = true;
    update();
 }
-
+// Paints the blocks to be into the code palette
 void codeBlock::paintEvent(QPaintEvent *){
    QPainter painter(this);
    QRect bound(0,0,width(),height());
@@ -53,7 +58,7 @@ void codeBlock::paintEvent(QPaintEvent *){
       painter.drawText(bound,text,QTextOption(Qt::AlignCenter));
    }
 }
-
+//sends block to drag storage for temporary storage until drop
 void codeBlock::mousePressEvent(QMouseEvent *event)
 {
    if((active) && (event->buttons() == Qt::LeftButton))
@@ -62,7 +67,7 @@ void codeBlock::mousePressEvent(QMouseEvent *event)
       emit sendUpBlock(this);
    }
 }
-
+// removes the block from dragStorage after mouse is released
 void codeBlock::mouseReleaseEvent(QMouseEvent *event)
 {
    if(event->buttons() == Qt::LeftButton){
@@ -70,7 +75,7 @@ void codeBlock::mouseReleaseEvent(QMouseEvent *event)
       emit sendUpBlock(NULL);
    }
 }
-
+// Redraws the block as the mouse is moved while being dragged
 void codeBlock::mouseMoveEvent(QMouseEvent *event)
 {
    if((active)&&(event->buttons() == Qt::LeftButton))

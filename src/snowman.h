@@ -35,6 +35,7 @@ private:
    QStringList *strs;
 signals:
    void emitMessage(const QString &);
+   void snowmanClicked();
 };
 
 

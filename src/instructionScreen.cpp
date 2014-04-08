@@ -9,7 +9,7 @@ instructionScreen::instructionScreen(QWidget *parent) :
   tic = new QTimer(this);
   connect(snowmantimer,SIGNAL(timeout()),this,SLOT(moveSnowman()));
   connect(tic,SIGNAL(timeout()),this,SLOT(progress()));
-  frame = new QGraphicsPixmapItem(QPixmap(":images/resources/tut1.png"));
+  frame = new QGraphicsPixmapItem(QPixmap(""));
   backdrop = new QGraphicsPixmapItem(QPixmap(":images/resources/backdrop_winter.png"));
   snowman = new QGraphicsPixmapItem(QPixmap(":/images/resources/frostyhorse.png"));
   speech1 = new QGraphicsPixmapItem(QPixmap(":/images/resources/stage1.png"));
@@ -17,10 +17,13 @@ instructionScreen::instructionScreen(QWidget *parent) :
   speech3 = new QGraphicsPixmapItem(QPixmap(":/images/resources/stage3.png"));
   speech4 = new QGraphicsPixmapItem(QPixmap(":/images/resources/stage4.png"));
   continuewithtut = new snowButton(0,new QPixmap(":/images/resources/continuebutton1.png"), new QPixmap(":/images/resources/continuebutton2.png"));
+  skiptut = new snowButton(0,new QPixmap(":/images/resources/skip1.png"), new QPixmap(":/images/resources/skip2.png"));
   connect(continuewithtut,SIGNAL(clicked()),this,SLOT(progress()));
+  connect(skiptut,SIGNAL(clicked()),this,SLOT(exitInstructions()));
   continuewithtut->hide();
   stage = 0;
 
+  skiptut->move(width()-64,height()-32);
   snowmanfinalx = width()/2;
   snowmanfinaly = height()-(width()/2);
   snowmanstartx = width();
@@ -37,6 +40,9 @@ instructionScreen::instructionScreen(QWidget *parent) :
 
   addItem(backdrop);
   addItem(snowman);
+  addItem(frame);
+  addWidget(skiptut);
+  skiptut->show();
 
   snowmantimer->start(4);
 }
@@ -50,6 +56,10 @@ void instructionScreen::moveSnowman()
     snowmantimer->stop();
     tic->start(100);
   }
+}
+void instructionScreen::exitInstructions()
+{
+  emit close();
 }
 
 void instructionScreen::progress()
@@ -85,8 +95,8 @@ void instructionScreen::progress()
     case 6:
       removeItem(speech4);
       removeItem(snowman);
+      frame->setPixmap(QPixmap(":images/resources/tut1.png"));
       backdrop->setPixmap(QPixmap(":images/resources/tutbackdrop.png"));
-      addItem(frame);
       break;
     case 7:
       frame->setPixmap(QPixmap(":images/resources/tut2.png"));

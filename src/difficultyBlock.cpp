@@ -1,3 +1,8 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014 
+//difficultyBlock.cpp
+// 
+// Paints the scenes in the difficulty choice screen.
 #include "difficultyBlock.h"
 #include <QDebug>
 
