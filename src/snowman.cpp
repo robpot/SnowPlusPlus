@@ -12,6 +12,7 @@ snowman::snowman(QWidget *parent, int minutes, int seconds) : QWidget(parent){
     strs->append(":/images/resources/snowman_B_0.png");
     strs->append(":/images/resources/snowman_C_0.png");
     strs->append(":/images/resources/snowman_D_0.png");
+    strs->append(":/images/resources/snowman_E_0.png");    
 
     count=0;
     image=new QImage();
@@ -59,6 +60,6 @@ void snowman::sendMessage(){
 //mesages sent for helpful hints
 //Also checks the emits a signal to check correctness
 void snowman::mousePressEvent(QMouseEvent *e){
-    sendMessage("testtesttesttesttest \n testtesttesttesttesttest. ");
+   emit snowmanClicked();
 
 }

@@ -14,8 +14,9 @@
 #include <QGridLayout>
 #include <QLCDNumber>
 #include "LCDTimer.h"
+#include "snowFlakes.h"
 
-class scorebox :public QWidget{
+class scorebox : public QWidget{
     Q_OBJECT
 
 public:
@@ -29,7 +30,11 @@ protected:
 private:
     LCDTimer *lcdTimer;
     QTimer *timeElapsed;
-
+    SnowFlakes *flakes;
+    int flakeCount;
+   
+public slots:
+    void snowmanClicked();
 };
 
 #endif
