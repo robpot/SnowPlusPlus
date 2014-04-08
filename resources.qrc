@@ -39,5 +39,10 @@
         <file>resources/tut11.png</file>
         <file>resources/tutbackdrop.png</file>
         <file>resources/continuebutton1.png</file>
+	<file>resources/skip1.png</file>
+	<file>resources/skip2.png</file>
+	<file>resources/backdrop_spring.png</file>
+	<file>resources/backdrop_summer.png</file>
+
     </qresource>
 </RCC>
