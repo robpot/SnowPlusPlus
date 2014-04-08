@@ -17,15 +17,16 @@ private:
   QTimer *snowmantimer;
   QTimer *tic;
   QGraphicsPixmapItem *backdrop, *snowman, *speech1, *speech2, *speech3, *speech4, *frame;
-  snowButton* continuewithtut;
+  snowButton* continuewithtut, *skiptut;
   int stage;
   int snowmanstartx,snowmanstarty,snowmanfinalx,snowmanfinaly;
 
 signals:
-
+  void close();
 public slots:
   void moveSnowman();
   void progress();
+  void exitInstructions();
 
 };
 
