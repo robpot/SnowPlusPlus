@@ -15,21 +15,24 @@ codeBlock::codeBlock(QString textval, int blockId, QWidget *parent) : QWidget(pa
    active = true;
    connect(this,SIGNAL(sendUpBlock(codeBlock*)),
            parent,SIGNAL(sendUpBlock(codeBlock*)));
-   // removeFromList does not exist anymore DO SOMETHING
-   //connect(this,SIGNAL(sendUpBlock(codeBlock*)),
-   //       parent,SLOT(removeFromList(codeBlock*)));
+   
    connect(this,SIGNAL(triggerResize(int)),
 	   parent,SLOT(resizeList(int)));
 }
+
+codeBlock::codeBlock(codeBlock & c, QWidget *parent) : QWidget(parent), text(c.getID()) ,palette_pos(c.getPalettePos()) ,numLines(c.getNumLines()), ID(c.getIDNum()) ,active(c.isActive())  {}
+
 // greys outs codeBlocks after they are moved to codeFrame
 void codeBlock::deactivate()
 {
    active = false;
    update();
+   
 }
 //toggles from grey back to normal when beign drawn in codeFrame
 void codeBlock::activate()
 {
+   
    active = true;
    update();
 }
@@ -60,21 +63,24 @@ void codeBlock::mousePressEvent(QMouseEvent *event)
 {
    if((active) && (event->buttons() == Qt::LeftButton))
    {
+      
       emit sendUpBlock(this);
-
    }
 }
 // removes the block from dragStorage after mouse is released
 void codeBlock::mouseReleaseEvent(QMouseEvent *event)
 {
-  if(event->buttons() == Qt::LeftButton)
-    emit sendUpBlock(NULL);
+   if(event->buttons() == Qt::LeftButton){
+      
+      emit sendUpBlock(NULL);
+   }
 }
 // Redraws the block as the mouse is moved while being dragged
 void codeBlock::mouseMoveEvent(QMouseEvent *event)
 {
    if((active)&&(event->buttons() == Qt::LeftButton))
    {
+      
       QDrag* drag = new QDrag(this);
       QPixmap dragpixmap(":/images/resources/block.png");
       dragpixmap = dragpixmap.scaled(width()/2,height()/2);
@@ -83,7 +89,6 @@ void codeBlock::mouseMoveEvent(QMouseEvent *event)
       drag->setMimeData(mimeData);
       emit triggerResize(ID);
       Qt::DropAction dropAction = drag->exec();
-      //emit triggerResize(ID);
   }
 }
 

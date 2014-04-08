@@ -5,7 +5,7 @@
 #include "snowPlusPlus.h"
 
 //builds the sub QWidgets that are displayed for the game. 
-snowPlusPlus::snowPlusPlus(level *lvl,QWidget *parent) : QWidget(parent){
+snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
    timeLimit=new QTime(0,0,30,0);
@@ -58,6 +58,5 @@ void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)
 //Allows drop events, participates int the drag and drop 
 void snowPlusPlus::dropEvent(QDropEvent *event)
 {
-   qDebug()<<"Drop event!";
-   palette->getBlocks(storage->getCurrent()->getPalettePos())->activate();
+    palette->getBlocks(storage->getCurrent()->getPalettePos())->activate();
 }

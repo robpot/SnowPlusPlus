@@ -6,6 +6,8 @@
 //
 
 #include "dragStorage.h"
+#include <QDebug>
+
 
 dragStorage::dragStorage(QWidget *parent) :
   QWidget(parent)
@@ -17,11 +19,14 @@ bool dragStorage::setBlock(codeBlock *block)
 {
   if(block != NULL)
   {
-    current = block;
+    
+     current = block; 
+    
     return 1;
   }
   else
   {
+     
     return 0;
   }
 
@@ -29,5 +34,6 @@ bool dragStorage::setBlock(codeBlock *block)
 
 codeBlock* dragStorage::getCurrent()
 {
+   
   return current;
 }
