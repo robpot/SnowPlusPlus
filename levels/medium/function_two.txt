@@ -1,6 +1,9 @@
 <Name>Function Two</Name>
 <Description>Design functions that will add, and multiply two numbers together.</Description>
 <Difficulty>Medium</Difficulty>
+<Min>5</Min>
+<Sec>0</Sec>
+
 
 <Level>
 <FixedBlock>#include <iostream>

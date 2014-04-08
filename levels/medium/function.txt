@@ -1,6 +1,8 @@
 <Name>Function</Name>
 <Description>Design a function that will add two numbers together</Description>
 <Difficulty>Medium</Difficulty>
+<Min>4</Min>
+<Sec>30</Sec>
 
 <Level>
 <FixedBlock>#include <iostream>

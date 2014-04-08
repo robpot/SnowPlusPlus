@@ -8,10 +8,10 @@
 snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
-   timeLimit=new QTime(0,0,30,0);
+   timeLimit=new QTime(0,lvl.min,lvl.sec,0);
    storage = new dragStorage(this);
    
-   back = new backdrop(lvl->diff,this);
+   back = new backdrop(lvl.diff,this);
    palette = new blockPalette(lvl,this);
    palette->setDragStorage(storage);
    frame = new codeFrame(lvl,this,storage);

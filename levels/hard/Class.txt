@@ -1,6 +1,8 @@
 <Name>Class</Name>
 <Description>Define a class 'Animal' with child classes 'Cat' and 'Dog'. Print "Fred says Meow" and "Garbo says Woof".</Description>
 <Difficulty>Hard</Difficulty>
+<Min>8</Min>
+<Sec>0</Sec>
 
 <Level>
 <CodeBlock>#include <string></CodeBlock>

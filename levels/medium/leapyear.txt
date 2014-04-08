@@ -1,6 +1,8 @@
 <Name>Leap Year</Name>
 <Description>Design a program that accepts any year as input, and outputs whether the year was a leap year or not.</Description>
 <Difficulty>Medium</Difficulty>
+<Min>5</Min>
+<Sec>0</Sec>
 
 <Level>
 <FixedBlock>#include <iostream>
@@ -14,8 +16,8 @@ int Main() {</FixedBlock>
 CodeBlock>int x;</CodeBlock>
 <CodeBlock>cin >> x;</CodeBlock>
 <CodeBlock>cout << x << "is ";</CodeBlock>
-CodeBlock>if(is_leap_year(x))</CodeBlock>
-CodeBlock>  cout << "a leap year" << endl;</CodeBlock>
+<CodeBlock>if(is_leap_year(x))</CodeBlock>
+<CodeBlock>  cout << "a leap year" << endl;</CodeBlock>
 <CodeBlock>else</CodeBlock>
 <CodeBlock>  cout << "not a leap year" << endl;</CodeBlock>
 <CodeBlock>return 0;</CodeBlock>
