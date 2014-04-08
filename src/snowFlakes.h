@@ -9,7 +9,7 @@
 class SnowFlakes :public QWidget{
    Q_OBJECT
       
-  public:
+public:
    SnowFlakes(int l=10,QWidget *parent=0);
    void loseFlake(int f);
   private:

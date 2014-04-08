@@ -11,10 +11,12 @@ class backdrop :public QWidget{
     Q_OBJECT
 
 public:
-   backdrop(QWidget *parent=0);
+   backdrop(QString diff, QWidget *parent=0);
    
 protected:
    void paintEvent(QPaintEvent *e);
+  private:
+   int d;
 };
 
 

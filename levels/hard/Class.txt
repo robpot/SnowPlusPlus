@@ -1,0 +1,66 @@
+<Name>Class</Name>
+<Description>Define a class 'Animal' with child classes 'Cat' and 'Dog'. Print "Fred says Meow" and "Garbo says Woof".</Description>
+<Difficulty>Hard</Difficulty>
+
+<Level>
+<CodeBlock>#include <string></CodeBlock>
+<FixedBlock>using namespace std;
+</FixedBlock>
+<FixedBlock>class Animal
+{</FixedBlock>
+<CodeBlock>protected:</CodeBlock>
+<CodeBlock>std::string m_strName;</CodeBlock>
+<CodeBlock>Animal(std::string strName)
+     : m_strName(strName) 
+     {
+     }</CodeBlock>
+<CodeBlock>public:</CodeBlock>
+<CodeBlock>std::string GetName() {
+     return m_strName;
+}</CodeBlock>
+<CodeBlock>virtual const char* Speak() {
+     return "???";
+}</CodeBlock>
+<FixedBlock>};</FixedBlock>
+
+<FixedBlock>class Cat: public Animal
+{</FixedBlock>
+<CodeBlock>public:</CodeBlock>
+<CodeBlock>Cat(std::string strName)
+     : Animal(strName)
+     {
+     }</CodeBlock>
+<CodeBlock>virtual const char* Speak() {
+     return "Meow";
+}</CodeBlock>
+<FixedBlock>};</FixedBlock>
+
+FixedBlock>class Dog: public Animal
+{</FixedBlock>
+<CodeBlock>public:</CodeBlock>
+<CodeBlock>Dog(std::string strName)
+     : Animal(strName)
+     {
+     }</CodeBlock>
+<CodeBlock>virtual const char* Speak() {
+     return "Woof";
+}</CodeBlock>
+<FixedBlock>};</FixedBlock>
+
+<FixedBlock>void Report(Animal &rAnimal) {</FixedBlock>
+<CodeBlock>cout << rAnimal.GetName << " says " 
+     << rAnimal.Speak() << endl;</CodeBlock>
+<FixedBlock>}</FixedBlock>
+
+<FixedBlock>int main(){</FixedBlock>
+<CodeBlock>Cat cCat("Fred");</CodeBlock>
+<CodeBlock>Cat cDog("Garbo");</CodeBlock>
+<CodeBlock>Report(cCat);</CodeBlock>
+<CodeBlock>Report(cDog);</CodeBlock>
+<FixedBlock>}</FixedBlock>
+</Level>
+
+<Extras>
+</Extras>
+
+<Hints>Meow</Hints>
