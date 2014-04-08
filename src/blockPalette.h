@@ -14,7 +14,7 @@ class blockPalette :public QWidget{
     Q_OBJECT
 
 public:
-   blockPalette(level * lvl, QWidget *parent=0);
+   blockPalette(level lvl, QWidget *parent=0);
    void setDragStorage(dragStorage* s) { store = s; }
     codeBlock* getBlocks(int i) { return blocks[i]; }
 public slots:

@@ -23,7 +23,7 @@ class snowPlusPlus :public QWidget{
     Q_OBJECT
 
 public:
-   snowPlusPlus(level *lvl, QWidget *parent=0);
+   snowPlusPlus(level lvl, QWidget *parent=0);
 //public slots:
 //   void gameEnd();
 protected:

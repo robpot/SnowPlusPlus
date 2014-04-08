@@ -14,12 +14,15 @@ class codeBlock :public QWidget{
 
 public:
    codeBlock(QString textVal="",int blockId=0, QWidget *parent=0);
+   codeBlock(codeBlock &, QWidget *parent=0);
    QString getID() { return text; }
    int getPalettePos() { return palette_pos; }
    void setPalettePos(int p) { palette_pos = p; }
    int getNumLines() { return numLines; }
    void deactivate();
    void activate();
+   bool isActive(){return active;}
+   int getIDNum(){return ID;}
 protected:
    void paintEvent(QPaintEvent *e);
    void mousePressEvent(QMouseEvent *);

@@ -31,10 +31,13 @@ void dropZone::paintEvent(QPaintEvent *)
 
 void dropZone::dragEnterEvent(QDragEnterEvent *event)
 {
+  
    if(block == NULL)
    {
       setGeometry(x(),y(),drag->getCurrent()->width(),drag->getCurrent()->height());
+  
       emit newSize();
+  
    }
    event->acceptProposedAction();
 }
@@ -82,18 +85,15 @@ void dropZone::mouseMoveEvent(QMouseEvent *event)
   { 
      QDrag* dragger = new QDrag(this);   
      QPixmap dragpixmap(":/images/resources/block.png");   
-     dragpixmap = dragpixmap.scaled(drag->getCurrent()->width()/2,drag->getCurrent()->height()/2);   
+     dragpixmap = dragpixmap.scaled(drag->getCurrent()->width()/2,drag->getCurrent()->height()/2);
      dragger->setPixmap(dragpixmap);   
      QMimeData *mimeData = new QMimeData;
      text = oldtext;
      dragger->setMimeData(mimeData);
-     
-     qDebug() << "drager set mimedata";
-     qDebug() << dragger;
      Qt::DropAction dropAction = dragger->exec();
      block = NULL;
-     qDebug() << "end of mouse Move";
      setGeometry(x(),y(),baseWidth,baseHeight);
+     emit newSize();
      update();
   }
 }

@@ -20,7 +20,7 @@ application::application(QWidget *parent) : QWidget(parent)
 
 void application::levelSelected(QString s) {
    //it does stuff with the string
-   game = new snowPlusPlus(&parse->getLevel(),this);
+   game = new snowPlusPlus(parse->getLevel(),this);
    chooser->hide();
    game->show();
 }

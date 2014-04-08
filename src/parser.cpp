@@ -49,9 +49,6 @@ void parser::parse(QString data){
       }
    }
 
-   qDebug() << lvl.ordered;
-   qDebug() << lvl.codeBlocks;
-   qDebug() << lvl.fixedBlocks;
    
    //QString look = r->readAll();
    
@@ -70,46 +67,47 @@ void parser::parse(QString data){
 
 void parser::tagHandler(QString data, QString tag, int pos, int &jump){
    if(tag == "<Name>"){
-      qDebug() << "<Name Called>";
+     
       lvl.name = goTillEndTag(data,tag,pos,jump);
-      qDebug() << lvl.name;
+     
    }
    if((tag == "<FixedBlock>") && subParsing && levelParse){
       QString fixed = goTillEndTag(data,tag,pos,jump);
       lvl.ordered.push_back(fixed);
       lvl.fixedBlocks.insert(lvl.ordered.size()-1, fixed);
+     
    }
    if((tag == "<CodeBlock>") && subParsing ){
       if(levelParse){
 	 QString code = goTillEndTag(data,tag,pos,jump);
 	 lvl.ordered.push_back(code);
 	 lvl.codeBlocks.insert(lvl.ordered.size()-1, code);
+	
       }
       if(extraParse){ // extras not being used this sprint
-	 qDebug() << goTillEndTag(data,tag,pos,jump);
+	 //qDebug() << goTillEndTag(data,tag,pos,jump);
       }
    }
    if(tag == "<Level>"){
-      qDebug() <<  "Level called";
+     
       QString sub = goTillEndTag(data,tag,pos,jump);
-      qDebug() << sub; 
+     
       subParsing = true;
       levelParse = true;
       parse(sub);
       subParsing = false;
       levelParse = false;
-      // call sub stuff
+     
    }
    if(tag == "<Extras>" ){
-      qDebug() << "Extras called";
+     
       QString sub = goTillEndTag(data,tag,pos,jump);
       subParsing = true;
       extraParse = true;
       parse(sub);
       subParsing = false;
       extraParse = false;
-      //subParsing = true;
-      //call sub stuff
+          //call sub stuff
    }
    if(tag == "<Hints>"){
       //lvl.hints.push_back(goTillEndTag(data,tag,pos,jump));
@@ -136,33 +134,33 @@ bool parser::isThisATag(QString data, int pos,int & endPos, QString & tag_type){
       compare +=data[i];   
       
       if(data[i] == '<'){
-	 //qDebug() << "Found: <" << start_of_tag+1;
+
 	 tag = true;
 	 start_of_tag++;
       }
       if(data[i] == '>'){
-	 //qDebug() << "Found: >" << end_of_tag+1;
+
 	 end_of_tag++;
       }
       
       if(tag == true){
 	 parser_tag += data[i];
-	 //qDebug() << parser_tag;
+
       }
       for(int j=0; j<notTagLib->size(); j++){
-	 //qDebug() << "J=" << j << notTagLib->size();
+	
 	 if(parser_tag == notTagLib->at(j)){
-	    //qDebug() << "Rejected: "<<parser_tag;
+	  
 	    endPos = pos;
 	    tag_type  = "FALSE";
 	    return false;
 	 }
       }
       for(int k=0; k<tagLib->size(); k++){
-	 //qDebug() << "K=" << k << tagLib->size();
+
 	 if(parser_tag == tagLib->at(k)){
 	    endPos = i;
-	    //qDebug() <<"Accepted :" << parser_tag;
+	 
 	    tag_type = parser_tag;
 	    return true;
 	 }
@@ -183,7 +181,7 @@ QString parser::goTillEndTag(QString data, QString tag, int i, int &k){
    QString betweenTags;
    k =i;
    QString endTag;
-   //qDebug() << "Start Pos" << i;
+ 
    for(int j=i; j<data.size(); j++){
       betweenTags += data[j];
       
@@ -191,15 +189,14 @@ QString parser::goTillEndTag(QString data, QString tag, int i, int &k){
 	 if(isThisATag(data,j,k,endTag)){
 	    QString compare = tag;
 	    compare.insert(1,'/');
-	    //qDebug() <<"We Want "<<compare << " We have " << endTag;
+	  
 	    if(compare == endTag){
 	       return cutEnds(betweenTags);
 	    }
 	 }
       }
    }
-   qDebug() <<"Endpos "<< k;
-   qDebug() <<"Between size" <<betweenTags.size() << " data size " << data.size();
+  
    return "ERROR: "+ tag + " Is Missing " + tag.insert(1,'/');
 }
 
@@ -216,12 +213,12 @@ QString parser::cutEnds(QString data){
 void parser::loadLevel(QString file){
    QFile* data =  new QFile();
    QDir::setCurrent(QDir::currentPath() + "/levels");
-   qDebug() << file;
+  
    data->setFileName(file);
    
    if(data->open(QIODevice::ReadWrite | QIODevice::Text))
    {
-      //QTextStream *read = new QTextStream(&data);
+  
       QString g(data->readAll());
       data->close();
       parse(g);

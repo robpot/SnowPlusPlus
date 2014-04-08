@@ -17,13 +17,13 @@ class codeFrame :public QWidget{
       
       public:
    //codeFrame(QStringList code, QWidget *parent=0);
-   codeFrame(level *l,QWidget *parent = 0, dragStorage *s =0);
+   codeFrame(level l,QWidget *parent = 0, dragStorage *s =0);
  protected:
    void paintEvent(QPaintEvent *e);
    void mousePressEvent(QMouseEvent *e);  
    
   private:
-   level *lvl;
+   level lvl;
    QMap<int,dropZone * > zones;
    void buildPage(int start =0);
    void pageUp();

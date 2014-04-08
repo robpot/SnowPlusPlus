@@ -5,7 +5,7 @@
 // number and block_per_page variables should be determined
 // by the parser program, as well as the information for
 // the code blocks in the push_back part of the for loop
-blockPalette::blockPalette(level * lvl, QWidget *parent) : QWidget(parent){
+blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);
    setAcceptDrops(true);
    top_arrow = new QImage(":/images/resources/arrow.png");
@@ -17,10 +17,10 @@ blockPalette::blockPalette(level * lvl, QWidget *parent) : QWidget(parent){
    total_pages = (int)ceil((double)number/block_per_page);
 
    QList<QString> bloks; 
-   for(int i=0; i<lvl->ordered.size(); i++){
-      qDebug() << "building blocks: "<< i ;
-      if(lvl->codeBlocks.find(i) != lvl->codeBlocks.end()){
-	 bloks.push_back(lvl->codeBlocks[i]);
+   for(int i=0; i<lvl.ordered.size(); i++){
+      
+      if(lvl.codeBlocks.find(i) != lvl.codeBlocks.end()){
+	 bloks.push_back(lvl.codeBlocks[i]);
       }
    }
 
@@ -125,6 +125,6 @@ void blockPalette::dragEnterEvent(QDragEnterEvent *event)
 
 void blockPalette::dropEvent(QDropEvent *event)
 {
-   qDebug()<<"Drop event!";
+  
    blocks[store->getCurrent()->getPalettePos()]->activate();
 }
