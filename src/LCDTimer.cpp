@@ -1,3 +1,7 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
+//LCDTimer.cpp
+// This is the timer used for the game timer
 #include "LCDTimer.h"
 
 LCDTimer::LCDTimer(QWidget * parentWidget,int minutes,int seconds){

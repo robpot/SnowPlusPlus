@@ -1,3 +1,6 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
+// This creates the block that shows the name of the level.
 #include "levelBlock.h"
 #include <QFont>
 

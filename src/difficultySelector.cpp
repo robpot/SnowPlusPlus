@@ -1,3 +1,8 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014 
+//animation.cpp
+//The creates the difficulty menu
+//
 //difficultyselector.cpp
 #include "difficultySelector.h"
 
@@ -29,6 +34,3 @@ void difficultySelector::paintEvent(QPaintEvent *) {
    
 }
 
-void difficultySelector::mousePressEvent(QMouseEvent *event) {
-   //  qDebug() << "BLAAAAAAAAAH";
-}

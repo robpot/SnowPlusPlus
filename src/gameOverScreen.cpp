@@ -1,3 +1,7 @@
+// Erin, Jahson, Jesze, Rob, Steven
+// Spring 2014
+// This displays the game over screen with the score , time remaining,
+// and snowflakes remaining.
 #include "gameOverScreen.h"
 #include <QDebug>
 gameOverScreen::gameOverScreen(QWidget *parent, int base, int timerem, int snowrem, int dif)

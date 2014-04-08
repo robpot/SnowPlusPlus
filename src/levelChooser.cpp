@@ -1,3 +1,8 @@
+//Erin, Jahson, Jesze, Rob, Steven
+//Spring 2014
+// levelChooser.cpp
+// This is used in conjunction with levelSelector and difficultySelector to
+// to implement the level selection.
 #include "levelChooser.h"
 
 levelChooser::levelChooser(QWidget *parent) : QWidget(parent) {
