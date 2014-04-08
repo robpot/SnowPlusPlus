@@ -41,17 +41,19 @@ codeFrame::codeFrame(level *l,QWidget *parent, dragStorage *s): QWidget(parent){
       }
       }
    */
+
    for(int i=0; i< lvl->ordered.size(); i++){
+      qDebug()<< "Build the stuff: " << i;
       if(lvl->codeBlocks.find(i) != lvl->codeBlocks.end()){
 	 dropZone *z = new dropZone("Drop Code Here", i,this);
 	 z->setDragStorage(store);
 	 connect(z, SIGNAL(newSize()), this, SLOT(resize()));
-	 zones.insert(std::pair<int, dropZone*> (i,z));
+	 zones.insert(i,z);
       }
       if(lvl->fixedBlocks.find(i) != lvl->fixedBlocks.end()){
-	 QLabel *r = new QLabel( lvl->fixedBlocks.at(i) , this);
+	 QLabel *r = new QLabel( lvl->fixedBlocks[i] , this);
 	 r->setBaseSize(152,12);
-	 others.insert(std::pair<int,QLabel*> (i,r));
+	 others.insert(i,r);
       }
    }
    buildPage();

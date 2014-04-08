@@ -1,5 +1,6 @@
+//Erin, Jahson, Jesze, Steven
+//Spring 2014
 //Parser.cpp
-//compiles information into a level class
 #include "parser.h"
 #include <QDebug>
 #include <QStringList>
@@ -49,6 +50,8 @@ void parser::parse(QString data){
    }
 
    qDebug() << lvl.ordered;
+   qDebug() << lvl.codeBlocks;
+   qDebug() << lvl.fixedBlocks;
    
    //QString look = r->readAll();
    
@@ -74,13 +77,13 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
    if((tag == "<FixedBlock>") && subParsing && levelParse){
       QString fixed = goTillEndTag(data,tag,pos,jump);
       lvl.ordered.push_back(fixed);
-      lvl.fixedBlocks.insert(std::pair<int,QString> (lvl.ordered.size()-1, fixed));
+      lvl.fixedBlocks.insert(lvl.ordered.size()-1, fixed);
    }
    if((tag == "<CodeBlock>") && subParsing ){
       if(levelParse){
 	 QString code = goTillEndTag(data,tag,pos,jump);
 	 lvl.ordered.push_back(code);
-	 lvl.codeBlocks.insert(std::pair<int,QString> (lvl.ordered.size()-1, code));
+	 lvl.codeBlocks.insert(lvl.ordered.size()-1, code);
       }
       if(extraParse){ // extras not being used this sprint
 	 qDebug() << goTillEndTag(data,tag,pos,jump);

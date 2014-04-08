@@ -1,7 +1,6 @@
 //Erin, Jahson, Jesze, Rob, Steven
 //Spring 2014
 #include "blockPalette.h"
-
 // Construct the blockPalette widget
 //
 //
@@ -20,9 +19,10 @@ blockPalette::blockPalette(level * lvl, QWidget *parent) : QWidget(parent){
    total_pages = (int)ceil((double)number/block_per_page);
 
    QList<QString> bloks; 
-   for(int i=0; i<lvl->ordered.size(); i++){ 
+   for(int i=0; i<lvl->ordered.size(); i++){
+      qDebug() << "building blocks: "<< i ;
       if(lvl->codeBlocks.find(i) != lvl->codeBlocks.end()){
-	 bloks.push_back(lvl->codeBlocks.at(i));
+	 bloks.push_back(lvl->codeBlocks[i]);
       }
    }
 

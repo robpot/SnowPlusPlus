@@ -50,6 +50,7 @@ void dropZone::dragLeaveEvent(QDragLeaveEvent *event)
 
 void dropZone::dropEvent(QDropEvent *event)
 {
+   //qDebug() << "Drag into Drop";
    setGeometry(x(),y(),432,12*drag->getCurrent()->getNumLines()+5*drag->getCurrent()->getNumLines());
    emit newSize();
    if(block != NULL)
@@ -63,12 +64,14 @@ void dropZone::dropEvent(QDropEvent *event)
 
 void dropZone::mousePressEvent(QMouseEvent *event)
 {
+   //qDebug() << "zone mousePress";
    if(event->buttons() == Qt::LeftButton)
       drag->setBlock(block);
 }
 
 void dropZone::mouseReleaseEvent(QMouseEvent *event)
 {
+   //qDebug() << "release event";
    if(event->buttons() == Qt::LeftButton)
       drag->setBlock(NULL);
 }
@@ -76,15 +79,21 @@ void dropZone::mouseReleaseEvent(QMouseEvent *event)
 void dropZone::mouseMoveEvent(QMouseEvent *event)
 {
   if(block != NULL && event->buttons() == Qt::LeftButton)
-  {
-      QDrag* dragger = new QDrag(this);
-      QPixmap dragpixmap(":/images/resources/block.png");
-      dragpixmap = dragpixmap.scaled(drag->getCurrent()->width()/2,drag->getCurrent()->height()/2);
-      dragger->setPixmap(dragpixmap);
-      QMimeData *mimeData = new QMimeData;
-      text = oldtext;
-      block = NULL;
-      dragger->setMimeData(mimeData);
-      Qt::DropAction dropAction = dragger->exec();
+  { 
+     QDrag* dragger = new QDrag(this);   
+     QPixmap dragpixmap(":/images/resources/block.png");   
+     dragpixmap = dragpixmap.scaled(drag->getCurrent()->width()/2,drag->getCurrent()->height()/2);   
+     dragger->setPixmap(dragpixmap);   
+     QMimeData *mimeData = new QMimeData;
+     text = oldtext;
+     dragger->setMimeData(mimeData);
+     
+     qDebug() << "drager set mimedata";
+     qDebug() << dragger;
+     Qt::DropAction dropAction = dragger->exec();
+     block = NULL;
+     qDebug() << "end of mouse Move";
+     setGeometry(x(),y(),baseWidth,baseHeight);
+     update();
   }
 }

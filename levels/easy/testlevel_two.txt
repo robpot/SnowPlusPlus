@@ -3,8 +3,9 @@
 <Difficulty>Easy</Difficulty>
 
 <Level>
-<FixedBlock>int Main {</FixedBlock> <FixedBlock>same line?</FixedBlock>
+<FixedBlock>int Main() {</FixedBlock> <FixedBlock>same line?</FixedBlock>
 <CodeBlock>int test = 5</CodeBlock>
+<CodeBlock>int test = 6</CodeBlock>
 <FixedBlock>}</FixedBlock>
 </Level>
 

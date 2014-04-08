@@ -1,0 +1,21 @@
+<Name>Addition</Name>
+<Description>Add two numbers together and display the result</Description>
+<Difficulty>Easy</Difficulty>
+
+<Level>
+<FixedBlock>#include <iostream>
+using namespace std;
+</FixedBlock>
+<FixedBlock>int Main() {</FixedBlock>
+<CodeBlock>int x = 5;</CodeBlock>
+<CodeBlock>int y = 9;</CodeBlock>
+<CodeBlock>cout << x + y << endl;</CodeBlock>
+<CodeBlock>return 0;</CodeBlock>
+<FixedBlock>}</FixedBlock>
+</Level>
+
+<Extras>
+<CodeBlock>return;</CodeBlock>
+</Extras>
+
+<Hints>Meow</Hints>

@@ -3,7 +3,7 @@
 <Difficulty>Easy</Difficulty>
 
 <Level>
-<FixedBlock>int Main {</FixedBlock> <FixedBlock>same line?</FixedBlock>
+<FixedBlock>int Main() TESTESTESTESTSETSETSETSET {</FixedBlock> <FixedBlock>same line?</FixedBlock>
 <CodeBlock>int test = 5</CodeBlock>
 <FixedBlock>}</FixedBlock>
 </Level>

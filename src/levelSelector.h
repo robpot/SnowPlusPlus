@@ -18,6 +18,7 @@ public:
    levelSelector(QWidget *parent=0);
 public slots:
    void difficultySelected(int);
+   void lvlSelected(QString);
 protected:
    void paintEvent(QPaintEvent *);
 private:
@@ -25,6 +26,8 @@ private:
    QStringList list;
    QDir *directory;
    QList<levelBlock*> levelList;
+   QGridLayout* layout;
+   QPushButton* bacButton;
 signals:
    void levelSelected(QString);
    void backButton();

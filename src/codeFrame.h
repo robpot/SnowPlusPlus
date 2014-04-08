@@ -12,7 +12,7 @@
 #include "level.h"
 #include <stack>
 #include <utility>
-#include <map>
+#include <QMap>
 #include <QLabel>
 #include <vector>
 class codeFrame :public QWidget{
@@ -27,7 +27,7 @@ class codeFrame :public QWidget{
    
   private:
    level *lvl;
-   std::map<int,dropZone * > zones;
+   QMap<int,dropZone * > zones;
    void buildPage(int start =0);
    void pageUp();
    void pageDown();
@@ -37,7 +37,7 @@ class codeFrame :public QWidget{
    QImage *botA, *topA;
    //first is itterator of codeList
    //second if itterator of zones
-   std::map<int,QLabel*> others; 
+   QMap<int,QLabel*> others; 
    std::vector<int> pages;
    int curPage;
    public slots:

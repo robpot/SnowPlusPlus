@@ -1,0 +1,18 @@
+<Name>Hello World</Name>
+<Description>Code to display "Hello World!"</Description>
+<Difficulty>Easy</Difficulty>
+
+<Level>
+<FixedBlock>#include <iostream>
+</FixedBlock>
+<FixedBlock>int Main() {</FixedBlock>
+<CodeBlock>std::cout << "Hello World!" << endl;</CodeBlock>
+<CodeBlock>return 0;</CodeBlock>
+<FixedBlock>}</FixedBlock>
+</Level>
+
+<Extras>
+<CodeBlock>using namespace std;</CodeBlock>
+</Extras>
+
+<Hints>Meow</Hints>

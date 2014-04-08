@@ -15,10 +15,28 @@
         <file>resources/goodjobbubble.png</file>
         <file>resources/scorebanner.png</file>
         <file>resources/snowflake.png</file>
-	<file>resources/spring.png</file>
-	<file>resources/summer.png</file>
-	<file>resources/winter.png</file>
-	<file>resources/difficultychoose.png</file>
-	<file>resources/levelchoose.png</file>
+        <file>resources/spring.png</file>
+        <file>resources/summer.png</file>
+        <file>resources/winter.png</file>
+        <file>resources/difficultychoose.png</file>
+        <file>resources/levelchoose.png</file>
+        <file>resources/stage1.png</file>
+        <file>resources/stage2.png</file>
+        <file>resources/stage3.png</file>
+        <file>resources/stage4.png</file>
+        <file>resources/continuebutton2.png</file>
+        <file>resources/tut1.png</file>
+        <file>resources/tut2.png</file>
+        <file>resources/tut3.png</file>
+        <file>resources/tut4.png</file>
+        <file>resources/tut5.png</file>
+        <file>resources/tut6.png</file>
+        <file>resources/tut7.png</file>
+        <file>resources/tut8.png</file>
+        <file>resources/tut9.png</file>
+        <file>resources/tut10.png</file>
+        <file>resources/tut11.png</file>
+        <file>resources/tutbackdrop.png</file>
+        <file>resources/continuebutton1.png</file>
     </qresource>
 </RCC>
