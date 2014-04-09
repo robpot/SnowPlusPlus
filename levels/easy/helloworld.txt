@@ -1,6 +1,8 @@
 <Name>Hello World</Name>
 <Description>Code to display "Hello World!"</Description>
 <Difficulty>Easy</Difficulty>
+<Min>1</Min>
+<Sec>30</Sec>
 
 <Level>
 <FixedBlock>#include <iostream>

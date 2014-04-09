@@ -14,9 +14,9 @@ snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
       difficulty=1;
    if(lvl.diff=="Hard")
       difficulty=2;
-   timeLimit=new QTime(0,0,30,0);
-   storage = new dragStorage(this);
    back = new backdrop(difficulty,this);
+   timeLimit=new QTime(0,lvl.min,lvl.sec,0);
+   storage = new dragStorage(this);
    palette = new blockPalette(lvl,this);
    palette->setDragStorage(storage);
    frame = new codeFrame(lvl,this,storage);
@@ -30,6 +30,7 @@ snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
    connect(this,SIGNAL(emitMessage(const QString &)),message,SLOT(catchMessage(const QString &)));
    connect(score,SIGNAL(gameOver(const int&, const int&)),this,SLOT(gameEnd(const int&, const int&)));
    connect(snow, SIGNAL(snowmanClicked()), score, SLOT(snowmanClicked()));
+   connect(score,SIGNAL(checkLevel()), frame, SLOT(check()));
    back->show();
    back->move(0,0);
    palette->show();

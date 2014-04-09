@@ -23,7 +23,8 @@ class level {
    //Map of fixed blocks
    QMap<int,QString> fixedBlocks;
    //Time
-   int time;
+   int min;
+   int sec;
    //Base score
    int baseS;
    //Bonus Score

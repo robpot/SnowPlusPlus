@@ -92,3 +92,10 @@ void codeBlock::mouseMoveEvent(QMouseEvent *event)
   }
 }
 
+void codeBlock::setRealID(int i){
+   realID = i;
+}
+
+void codeBlock::setIDNum(int i){
+   ID = i;
+}

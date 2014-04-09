@@ -1,12 +1,16 @@
 //Erin, Jahson, Jesze, Rob, Steven
 //Spring 2014
-#include "blockPalette.h"
+
 // Construct the blockPalette widget
 //
 //
 // number and block_per_page variables should be determined
 // by the parser program, as well as the information for
 // the code blocks in the push_back part of the for loop
+#include "blockPalette.h"
+#include <cstdlib>
+#include <time.h>
+
 blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);
    setAcceptDrops(true);
@@ -18,23 +22,42 @@ blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
    current_page = 1;
    total_pages = (int)ceil((double)number/block_per_page);
 
-   QList<QString> bloks; 
+   //saved in order
+   QList<QString> bloks;
+   QList<int> orderID;
    for(int i=0; i<lvl.ordered.size(); i++){
       
       if(lvl.codeBlocks.find(i) != lvl.codeBlocks.end()){
 	 bloks.push_back(lvl.codeBlocks[i]);
+	 orderID.push_back(i);
       }
    }
 
+   //saved to codeBlocks in order
    for(int i=0; i<bloks.size(); i++){
       blocks.push_back(new codeBlock(bloks[i], i, this));
+      blocks.last()->setRealID(orderID[i]);
       blocks.last()->setPalettePos(i);
-      blocks.last()->move(4, 44+((blocks.last()->height()+4)*i));
+      // blocks.last()->move(4, 44+((blocks.last()->height()+4)*i));
       if(i>=block_per_page){
 	 blocks.last()->hide();
       }
    }
-   
+
+   //ranomizes blocks for output;
+   for(int i=0; i< blocks.size()*3; i++){
+      srand(time(NULL));
+      int q = (rand()+i) % blocks.size();
+      srand(q);
+      int w = (rand()+i) % blocks.size();
+      blocks[q]->setIDNum(w);
+      blocks[w]->setIDNum(q);
+      blocks[q]->setPalettePos(w);
+      blocks[w]->setPalettePos(q);
+      blocks.swap(q,w);
+      
+   }
+   setPage(1);
    /*
    blocks.push_back(new codeBlock("cout<<\"Hello World\";", 0, this));
    blocks.last()->setPalettePos(0);

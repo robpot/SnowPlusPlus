@@ -12,6 +12,8 @@ dropZone::dropZone(QString s, int i ,QWidget *p) : QWidget(p)
    text =s;
    oldtext = text;
    ID = i;
+   pen.setStyle(Qt::DashDotLine);
+   pen.setColor(Qt::black) ;
    block = NULL;
 }
 
@@ -24,9 +26,9 @@ void dropZone::paintEvent(QPaintEvent *)
 {
    QPainter painter(this);
    QRect bound(0,0,width(),height());
-   painter.setPen(Qt::DashDotLine);
+   painter.setPen(pen);
    painter.drawRect(1,1,width()-2, height()-2);
-   painter.drawText(bound, text, QTextOption(Qt::AlignCenter));
+   painter.drawText(bound, text, QTextOption(Qt::AlignLeft));
 }
 
 void dropZone::dragEnterEvent(QDragEnterEvent *event)
@@ -96,4 +98,21 @@ void dropZone::mouseMoveEvent(QMouseEvent *event)
      emit newSize();
      update();
   }
+}
+
+bool dropZone::correctness(){
+   if(block == NULL){
+      return false;
+   }else{
+      qDebug() <<text << "My ID ?= Held ID" << block->getRealID();
+      if(block->getRealID() == ID){
+	 return true;
+      }else{
+	 return false;
+      }
+   }
+}
+
+void dropZone::setPen(QPen aPen){
+   pen = aPen;
 }

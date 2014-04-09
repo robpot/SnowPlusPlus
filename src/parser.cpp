@@ -14,7 +14,8 @@ parser::parser(QObject *o) : QObject(o){
 	<<"<CodeBlock>"<<"</CodeBlock>"<<"<Level>"<<"</Level>"
 	<<"<Extras>"<<"</Extras>"<<"<Hints>"<<"</Hints>"
 	<<"<Description>"<<"</Description>"
-	<<"<Difficulty>"<< "</Difficulty>";
+	<<"<Difficulty>"<< "</Difficulty>"
+        <<"<Min>"<<"</Min>"<<"<Sec>"<<"</Sec>";
    tagLib = new QStringList(tags);
 
    QStringList notTags;
@@ -118,7 +119,12 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
    if(tag == "<Difficulty>"){
       lvl.diff =  goTillEndTag(data,tag,pos,jump);
    }
-
+   if(tag == "<Min>"){
+      lvl.min = goTillEndTag(data, tag, pos, jump).toInt();
+   }
+   if(tag =="<Sec>"){
+      lvl.sec = goTillEndTag(data, tag, pos, jump).toInt();
+   }
 }
 
 
