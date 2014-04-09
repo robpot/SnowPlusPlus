@@ -8,6 +8,7 @@
 #include <QList>
 #include <utility>
 #include <QMap>
+#include <QStringList>
 
 class level {
   public:
@@ -30,7 +31,7 @@ class level {
    //Bonus Score
    int bonusS;
    //Snowman's timed hints
-   QList<QString> hints;
+   QStringList hints;
 };
 
 #endif

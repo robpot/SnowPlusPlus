@@ -19,7 +19,7 @@ snowman::snowman(QWidget *parent, int minutes, int seconds) : QWidget(parent){
     image->load(strs->at(count));
     time=new QTime(0,minutes,seconds);
     timer=new QTimer(this);
-    timer->setInterval((time->minute()*60000+time->second()*1000)/4);
+    timer->setInterval((time->minute()*60000+time->second()*1000)/5);
     connect(timer,SIGNAL(timeout()),this,SLOT(nextSnowman()));
     connect(timer,SIGNAL(timeout()),this,SLOT(sendMessage()));
     timer->start();
@@ -35,7 +35,7 @@ void snowman::paintEvent(QPaintEvent *){
 }
 //calles the redraw to paint the next snowman image
 void snowman::nextSnowman(){
-    if (count<3){count++;}
+    if (count<4){count++;}
     image->load(strs->at(count));
 
     repaint();
@@ -50,10 +50,11 @@ void snowman::sendMessage(const QString &str){
 //messages sent for each time segment.
 void snowman::sendMessage(){
     QString str;
-    if (count<3){
+    if (count<4){
     if (count==1){str="Who turned up the heat?";}
     if (count==2){str="I'm meellllttttiiinnnggg...";}
     if (count==3){str="FAIL";}
+    if (count==4){str="I'm done!";}
     emitMessage(str);}
 }
 

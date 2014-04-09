@@ -111,7 +111,7 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
           //call sub stuff
    }
    if(tag == "<Hints>"){
-      //lvl.hints.push_back(goTillEndTag(data,tag,pos,jump));
+      lvl.hints.push_back(goTillEndTag(data,tag,pos,jump));
    }
    if(tag == "<Description>"){
       //lvl.desc = goTillEndTag(data,pos,jump);

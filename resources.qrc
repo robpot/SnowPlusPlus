@@ -8,7 +8,8 @@
         <file>resources/snowman_B_0.png</file>
         <file>resources/snowman_C_0.png</file>
         <file>resources/snowman_D_0.png</file>
-        <file>resources/arrow.png</file>
+	<file>resources/snowman_E_0.png</file>
+	<file>resources/arrow.png</file>
         <file>resources/dropspace.png</file>
         <file>resources/messagebox.png</file>
         <file>resources/frostyhorse.png</file>

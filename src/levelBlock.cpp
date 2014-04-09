@@ -12,8 +12,13 @@ void levelBlock::paintEvent(QPaintEvent *) {
    QPainter painter(this);
    QRect rect(0,0,width(),height());
    painter.drawImage(rect, QImage(":/images/resources/block.png"));
-   painter.setFont(QFont("Times", 42));
-   painter.drawText(rect, Qt::AlignCenter,levelName);
+   if(levelName.size() >=15){
+      painter.setFont(QFont("Times", 16));}
+   if(levelName.size() > 9 && levelName.size() < 15){
+      painter.setFont(QFont("Times", 30));}
+   if(levelName.size() <= 9){
+      painter.setFont(QFont("Times", 36));}
+   painter.drawText(rect,Qt::AlignCenter,levelName);
 }
 
 void levelBlock::mousePressEvent(QMouseEvent* event) {
