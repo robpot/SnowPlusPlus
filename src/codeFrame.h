@@ -43,7 +43,8 @@ class codeFrame :public QWidget{
    public slots:
    void resize();
    void check();
-   
+  signals:
+   void allCorrect();
 };
 
 #endif

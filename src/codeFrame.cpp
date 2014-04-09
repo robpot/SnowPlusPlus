@@ -91,10 +91,9 @@ void codeFrame::buildPage(int start){
    int Y = defY;
    int X = defX;
    int i = start;
-   bool morePages = false;
 
    
-   while(i < lvl.ordered.size() && !morePages){
+   while(i < lvl.ordered.size()){
       if(Y < 400){ //Show
 	 if(others.find(i) != others.end()){
 	    others[i]->move(X,Y);
@@ -107,32 +106,36 @@ void codeFrame::buildPage(int start){
 	    Y = Y  +zones[i]->height() + 2;
 	    i++;
 	 }
-	 
-      }else{ //Hide
-	 pages.push_back(i);
-	 morePages = true;
       }
    }
 }
 
 // changes page up
 void codeFrame::pageUp(){
-   if(curPage-1 >= 0){
-      curPage--;
-      buildPage(curPage);
+   if(curPage-10 >= 0){
+      curPage -= 10;
+   }else if(curPage -5 >= 0){
+      curPage -= 5;
+   }else if(curPage -1 >= 0){
+      curPage -= 1;
    }
+   buildPage(curPage);
 }
 //changes page down
 void codeFrame::pageDown(){
-   if( (curPage+1 < pages.size()) && (curPage+1 < lvl.ordered.size()) ){
-      curPage++;
-      buildPage(curPage);
+   //10
+   if(curPage+10 < lvl.ordered.size()){
+      curPage += 10;
+   }else if(curPage +5 < lvl.ordered.size()){
+      curPage += 5;
+   }else if(curPage +1 < lvl.ordered.size()){
+      curPage += 1;
    }
-   
+   buildPage(curPage);
 }
 // resizes page
 void codeFrame::resize(){
-   buildPage(pages[curPage]);
+   buildPage(curPage);
 }
 
 void codeFrame::check(){
@@ -142,7 +145,6 @@ void codeFrame::check(){
       if(zones.find(i) != zones.end()){
 	 if(zones[i]->correctness()){
 	    //set to green color
-	    qDebug() << "set to green";
 	    pen.setColor(Qt::darkGreen);
 	    zones[i]->setPen(pen);
 	    update();
@@ -150,13 +152,13 @@ void codeFrame::check(){
 	    allright = false;
 	    pen.setColor(Qt::black);
 	    zones[i]->setPen(pen);
-	    qDebug() << "set to black";
 	    update();
 	    //set to red color
 	 }
       }
    }
    if(allright){
+      emit allCorrect();
       //emit end game?
    }
 }

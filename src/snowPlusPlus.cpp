@@ -31,6 +31,7 @@ snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
    connect(score,SIGNAL(gameOver(const int&, const int&)),this,SLOT(gameEnd(const int&, const int&)));
    connect(snow, SIGNAL(snowmanClicked()), score, SLOT(snowmanClicked()));
    connect(score,SIGNAL(checkLevel()), frame, SLOT(check()));
+   connect(frame, SIGNAL(allCorrect()), score ,SLOT(allCorrect()));
    back->show();
    back->move(0,0);
    palette->show();
