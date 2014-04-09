@@ -30,11 +30,11 @@ void difficultyBlock::paintEvent(QPaintEvent *) {
 	 fontImage = new QImage(":/images/resources/winter.png");
 	 break;
       case 1:
-	 image = new QImage(":/images/resources/block.png");
+	 image = new QImage(":/images/resources/backdrop_spring.png");
 	 fontImage = new QImage(":/images/resources/spring.png");
 	 break;
       case 2:
-	 image = new QImage(":/images/resources/block.png");
+	 image = new QImage(":/images/resources/backdrop_summer.png");
 	 fontImage = new QImage(":/images/resources/summer.png");
 	 break;
    }

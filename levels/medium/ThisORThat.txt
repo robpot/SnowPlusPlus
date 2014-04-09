@@ -1,0 +1,24 @@
+<Name>ThisORThat</Name>
+<Description>Learn to you the Or function for conditional statements.</Description>
+<Difficulty>Medium</Difficulty>
+<Min>4</Min>
+<Sec>0</Sec>
+<Level>
+<FixedBlock>#include <iostream></FixedBlock>
+<FixedBlock>
+int main()
+{
+    using namespace std;
+    </FixedBlock>
+    <CodeBlock>cout << "Enter a number: ";</CodeBlock>
+    <CodeBlock>int nValue;</CodeBlock>
+    <CodeBlock>cin >> nValue;</CodeBlock>
+ 
+    <CodeBlock>if (nValue == 0 || nValue == 1)</CodeBlock>
+    <CodeBlock>    cout << "You picked 0 or 1" << endl;</CodeBlock>
+    <CodeBlock>else</CodeBlock>
+    <CodeBlock>    cout << "You did not pick 0 or 1" << endl;</CodeBlock>
+    <CodeBlock>return 0;</CodeBlock>
+<FixedBlock>}</FixedBlock>
+</Level>
+<Hints>Remember, you have to declare your variables and intialize it!</Hints>

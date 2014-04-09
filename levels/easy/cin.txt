@@ -1,6 +1,8 @@
 <Name>Cin</Name>
 <Description>Code to accept input and display it.</Description>
 <Difficulty>Easy</Difficulty>
+<Min>2</Min>
+<Sec>30</Sec>
 
 <Level>
 <FixedBlock>#include <iostream>

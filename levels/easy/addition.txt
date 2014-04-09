@@ -1,6 +1,8 @@
 <Name>Addition</Name>
 <Description>Add two numbers together and display the result</Description>
 <Difficulty>Easy</Difficulty>
+<Min>3</Min>
+<Sec>0</Sec>
 
 <Level>
 <FixedBlock>#include <iostream>
