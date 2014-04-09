@@ -38,6 +38,7 @@ private:
 public slots:
     void snowmanClicked();
     void timeout();
+    void allCorrect();
 };
 
 #endif

@@ -38,12 +38,13 @@ class codeFrame :public QWidget{
    //first is itterator of codeList
    //second if itterator of zones
    QMap<int,QLabel*> others; 
-   std::vector<int> pages;
+   //std::vector<int> pages;
    int curPage;
    public slots:
    void resize();
    void check();
-   
+  signals:
+   void allCorrect();
 };
 
 #endif
