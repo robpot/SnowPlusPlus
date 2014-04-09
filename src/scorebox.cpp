@@ -32,6 +32,7 @@ void scorebox::paintEvent(QPaintEvent *){
 void scorebox::snowmanClicked() {
    flakeCount--;
    flakes->loseFlake(flakeCount);
+   emit checkLevel();
    if(flakeCount == 0)
    {
       emit gameOver();

@@ -42,6 +42,8 @@ class codeFrame :public QWidget{
    int curPage;
    public slots:
    void resize();
+   void check();
+   
 };
 
 #endif

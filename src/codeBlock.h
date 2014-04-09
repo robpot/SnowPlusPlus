@@ -26,6 +26,9 @@ public:
    void activate();
    bool isActive(){return active;}
    int getIDNum(){return ID;}
+   void setRealID(int i);
+   void setIDNum(int i);
+   int getRealID(){return realID;}
 protected:
    void paintEvent(QPaintEvent *e);
    void mousePressEvent(QMouseEvent *);
@@ -37,6 +40,7 @@ private:
    int numLines;
    int ID;
    bool active;
+   int realID;
 signals:
    void sendUpBlock(codeBlock*);
    void triggerResize(int);

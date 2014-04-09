@@ -7,6 +7,7 @@
 #include <QPainter>
 #include "dragStorage.h"
 #include <QDragEnterEvent>
+#include <QPen>
 
 //magnet to hold codeBlocks
 class dropZone : public QWidget {
@@ -14,6 +15,8 @@ class dropZone : public QWidget {
   public:
    dropZone(QString s, int i, QWidget *p =0);
    void setDragStorage(dragStorage*);
+   bool correctness();
+   void setPen(QPen);
   protected:
    void paintEvent(QPaintEvent *);
    void dragEnterEvent(QDragEnterEvent *);
@@ -23,6 +26,7 @@ class dropZone : public QWidget {
    void mouseMoveEvent(QMouseEvent *);
    void mouseReleaseEvent(QMouseEvent *);
   private:
+   QPen pen;
    int ID;
    QString text,oldtext;
    dragStorage *drag;

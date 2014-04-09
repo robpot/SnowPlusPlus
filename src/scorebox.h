@@ -23,7 +23,7 @@ public:
     scorebox(QWidget *parent=0,int min=1,int sec=0);
 signals:
     void gameOver();
-
+    void checkLevel();
 protected:
     void paintEvent(QPaintEvent *e);
 

@@ -134,3 +134,29 @@ void codeFrame::pageDown(){
 void codeFrame::resize(){
    buildPage(pages[curPage]);
 }
+
+void codeFrame::check(){
+   bool allright = true;
+   QPen pen(Qt::DashDotLine);
+   for(int i=0; i<lvl.ordered.size() ; i++){
+      if(zones.find(i) != zones.end()){
+	 if(zones[i]->correctness()){
+	    //set to green color
+	    qDebug() << "set to green";
+	    pen.setColor(Qt::darkGreen);
+	    zones[i]->setPen(pen);
+	    update();
+	 }else{
+	    allright = false;
+	    pen.setColor(Qt::black);
+	    zones[i]->setPen(pen);
+	    qDebug() << "set to black";
+	    update();
+	    //set to red color
+	 }
+      }
+   }
+   if(allright){
+      //emit end game?
+   }
+}
