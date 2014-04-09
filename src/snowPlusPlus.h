@@ -47,6 +47,7 @@ private:
 
 signals:
    void emitMessage(const QString &);
+   void showGameOver(int,int,int,int);
 
 };
 

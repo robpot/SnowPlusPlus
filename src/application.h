@@ -8,7 +8,7 @@
 #include "codeFrame.h"
 #include "messageBox.h"
 #include "snowPlusPlus.h"
-#include "gameOverScreen.h"
+#include "gameOverWrapper.h"
 #include "levelChooser.h"
 #include "parser.h"
 
@@ -19,9 +19,10 @@ public:
    application(QWidget *parent=0);
 public slots:
    void levelSelected(QString);
+   void gameOver(int,int,int,int);
 private:
    snowPlusPlus* game;
-   gameOverScreen* gameover;
+   gameOverWrapper* gameover;
    levelChooser* chooser;
    parser* parse;
 };

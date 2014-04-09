@@ -53,8 +53,7 @@ void snowPlusPlus::paintEvent(QPaintEvent *){
 
 
 void snowPlusPlus::gameEnd(const int &timeRem, const int &snowRem){
-   goScreen = new gameOverScreen(this, baseScore, timeRem, snowRem, difficulty);
-//  QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
+   emit showGameOver(0,timeRem,snowRem,difficulty);
 }
 
 
