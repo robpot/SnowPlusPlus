@@ -1,0 +1,24 @@
+<Name>Cin</Name>
+<Description>Code to accept input and display it.</Description>
+<Difficulty>Easy</Difficulty>
+<Min>2</Min>
+<Sec>30</Sec>
+
+<Level>
+<FixedBlock>#include <iostream>
+using namespace std;
+</FixedBlock>
+<FixedBlock>int Main() {</FixedBlock>
+<CodeBlock>cout << "Enter a number: " << endl;</CodeBlock>
+<CodeBlock>int x;</CodeBlock>
+<CodeBlock>cin >> x;</CodeBlock>
+<CodeBlock>cout << "You entered " << x << endl;</CodeBlock>
+<CodeBlock>return 0;</CodeBlock>
+<FixedBlock>}</FixedBlock>
+</Level>
+
+<Extras>
+<CodeBlock>int y;</CodeBlock>
+</Extras>
+
+<Hints>Meow</Hints>
