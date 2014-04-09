@@ -16,6 +16,7 @@
 #include "scorebox.h"
 #include "dragStorage.h"
 #include "level.h"
+#include "gameOverScreen.h"
 #include <QMessageBox>
 
 
@@ -24,8 +25,8 @@ class snowPlusPlus :public QWidget{
 
 public:
    snowPlusPlus(level lvl, QWidget *parent=0);
-//public slots:
-//   void gameEnd();
+public slots:
+   void gameEnd(const int&, const int&);
 protected:
    void paintEvent(QPaintEvent *);
    void dragEnterEvent(QDragEnterEvent *);
@@ -40,6 +41,9 @@ private:
    scorebox* score;
    dragStorage* storage;
    QTime *timeLimit;
+   gameOverScreen* goScreen;
+   int difficulty;
+   int baseScore;
 
 signals:
    void emitMessage(const QString &);

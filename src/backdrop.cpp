@@ -4,15 +4,9 @@
 
 #include "backdrop.h"
 
-backdrop::backdrop(QString diff,QWidget *parent) : QWidget(parent){
+backdrop::backdrop(int diff,QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
-   d=0;
-   if(diff=="Easy")
-      d=0;
-   if(diff=="Medium")
-      d=1;
-   if(diff=="Hard")
-      d=2;
+   d=diff;
 }
 
 //paints the background into the backdrop frame

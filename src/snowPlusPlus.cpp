@@ -8,20 +8,27 @@
 snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
    setFixedSize(1024,576);
    setAcceptDrops(true);
+   if(lvl.diff=="Easy")
+      difficulty=0;
+   if(lvl.diff=="Medium")
+      difficulty=1;
+   if(lvl.diff=="Hard")
+      difficulty=2;
    timeLimit=new QTime(0,0,30,0);
    storage = new dragStorage(this);
-   
-   back = new backdrop(lvl->diff,this);
+   back = new backdrop(difficulty,this);
    palette = new blockPalette(lvl,this);
    palette->setDragStorage(storage);
    frame = new codeFrame(lvl,this,storage);
    message = new messageBox(this);
    snow = new snowman(this,timeLimit->minute(),timeLimit->second());
    score = new scorebox(this,timeLimit->minute(),timeLimit->second());
+   goScreen = NULL;
+   baseScore = difficulty*500 + 500;
    connect(palette,SIGNAL(sendUpBlock(codeBlock*)),storage,SLOT(setBlock(codeBlock*)));
    connect(snow,SIGNAL(emitMessage(const QString &)),this,SIGNAL(emitMessage(const QString &)));
    connect(this,SIGNAL(emitMessage(const QString &)),message,SLOT(catchMessage(const QString &)));
-   connect(score,SIGNAL(gameOver()),message,SLOT(gameEnd()));
+   connect(score,SIGNAL(gameOver(const int&, const int&)),this,SLOT(gameEnd(const int&, const int&)));
    connect(snow, SIGNAL(snowmanClicked()), score, SLOT(snowmanClicked()));
    back->show();
    back->move(0,0);
@@ -43,11 +50,12 @@ void snowPlusPlus::paintEvent(QPaintEvent *){
     painter.drawRect(1,1 , width()-2, height()-2);
 }
 
-/*
-void snowPlusPlus::gameEnd(){
-  QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
+
+void snowPlusPlus::gameEnd(const int &timeRem, const int &snowRem){
+   goScreen = new gameOverScreen(this, baseScore, timeRem, snowRem, difficulty);
+//  QMessageBox::information(this,"Game Over","It's gettin' hot in here ;)",QMessageBox::Ok,0);
 }
-*/
+
 
 //Allows dragEnterEvents
 void snowPlusPlus::dragEnterEvent(QDragEnterEvent *event)

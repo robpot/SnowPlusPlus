@@ -20,7 +20,7 @@ scorebox::scorebox(QWidget *parent, int min, int sec) : QWidget(parent){
     lcdTimer->ticks->start();
     timeElapsed->start();
     connect(timeElapsed,SIGNAL(timeout()),lcdTimer->ticks,SLOT(stop()));
-    connect(timeElapsed,SIGNAL(timeout()),this,SIGNAL(gameOver()));
+    connect(timeElapsed,SIGNAL(timeout()),this,SLOT(timeout()));
 }
 
 //Updates the clock
@@ -34,6 +34,9 @@ void scorebox::snowmanClicked() {
    flakes->loseFlake(flakeCount);
    if(flakeCount == 0)
    {
-      emit gameOver();
+      emit gameOver(lcdTimer->getTimeRemaining(), flakeCount);
    }
+}
+void scorebox::timeout() {
+   emit gameOver(0, flakeCount);
 }

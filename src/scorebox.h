@@ -22,10 +22,10 @@ class scorebox : public QWidget{
 public:
     scorebox(QWidget *parent=0,int min=1,int sec=0);
 signals:
-    void gameOver();
+    void gameOver(const int&, const int&);
 
 protected:
-    void paintEvent(QPaintEvent *e);
+    void paintEvent(QPaintEvent *);
 
 private:
     LCDTimer *lcdTimer;
@@ -35,6 +35,7 @@ private:
    
 public slots:
     void snowmanClicked();
+    void timeout();
 };
 
 #endif

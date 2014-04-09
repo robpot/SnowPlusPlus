@@ -12,12 +12,14 @@ public:
     LCDTimer(QWidget * parentWidget,int minutes,int seconds);
     QTimer* ticks;
     QTime*  timeValue;
+    int getTimeRemaining() {return timePassed;}
 
 public slots:
     void setDisplay();
+    void tick();
 
 private:
-
+    int timePassed;
     int min;
     int sec;
 
