@@ -8,7 +8,8 @@
 // by the parser program, as well as the information for
 // the code blocks in the push_back part of the for loop
 #include "blockPalette.h"
-//#include <cstdlib>
+#include <cstdlib>
+#include <time.h>
 
 blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);
@@ -37,7 +38,7 @@ blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
       blocks.push_back(new codeBlock(bloks[i], i, this));
       blocks.last()->setRealID(orderID[i]);
       blocks.last()->setPalettePos(i);
-      blocks.last()->move(4, 44+((blocks.last()->height()+4)*i));
+      // blocks.last()->move(4, 44+((blocks.last()->height()+4)*i));
       if(i>=block_per_page){
 	 blocks.last()->hide();
       }
@@ -45,15 +46,18 @@ blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
 
    //ranomizes blocks for output;
    for(int i=0; i< blocks.size()*3; i++){
-      //srand(1);
-      //int q = rand() % blocks.size();
-      //srand(q);
-      //int w = rand() % blocks.size();
-      //blocks[q]->setIDNum(w);
-      //blocks[w]->setIDNum(q);
-      //blocks.swap(q,w);
+      srand(time(NULL));
+      int q = (rand()+i) % blocks.size();
+      srand(q);
+      int w = (rand()+i) % blocks.size();
+      blocks[q]->setIDNum(w);
+      blocks[w]->setIDNum(q);
+      blocks[q]->setPalettePos(w);
+      blocks[w]->setPalettePos(q);
+      blocks.swap(q,w);
+      
    }
-   
+   setPage(1);
    /*
    blocks.push_back(new codeBlock("cout<<\"Hello World\";", 0, this));
    blocks.last()->setPalettePos(0);
