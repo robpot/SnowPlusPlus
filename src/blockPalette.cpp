@@ -44,7 +44,7 @@ blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
    }
 
    //ranomizes blocks for output;
-   for(int i=0; blocks.size()*3; i++){
+   for(int i=0; i< blocks.size()*3; i++){
       //srand(1);
       //int q = rand() % blocks.size();
       //srand(q);
