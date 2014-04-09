@@ -18,7 +18,7 @@ codeFrame::codeFrame(level l,QWidget *parent, dragStorage *s): QWidget(parent){
    //codeList = code;
    store = s;
    //used in pages
-   pages.push_back(0);
+   //pages.push_back(0);
    curPage = 0;
 
 
@@ -86,13 +86,11 @@ void codeFrame::buildPage(int start){
 	 others[l]->hide();
       }
    }
-
- 
+   
    int Y = defY;
    int X = defX;
    int i = start;
 
-   
    while(i < lvl.ordered.size()){
       if(Y < 400){ //Show
 	 if(others.find(i) != others.end()){
@@ -106,6 +104,8 @@ void codeFrame::buildPage(int start){
 	    Y = Y  +zones[i]->height() + 2;
 	    i++;
 	 }
+      }else{
+	 i = lvl.ordered.size();
       }
    }
 }
