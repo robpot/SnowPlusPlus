@@ -13,12 +13,13 @@ gameOverScreen::gameOverScreen(QWidget *parent, int base, int timerem, int snowr
   QFont font("Times",scorefontsize);
   setFont(font);
   score.append("Total Score: ");
-  totalscore = base+(timerem*(dif+1))-(snowrem-1);
+  totalscore = base+((timerem/1000)*(dif+1))-100*(10-snowrem);
   score.append(QString::number(totalscore));
   basescore.append("Base Score: ");
   basescore.append(QString::number(base));
-  timeremaining.append("Time Bonus: ");
-  timeremaining.append(QString::number(timerem));
+  timeremaining.append("Time Left: ");
+  timeremaining.append(QString::number(timerem/1000));
+  timeremaining.append(" sec");
   snowflakeamount.append("Snowflakes Remaining: ");
   snowflakeamount.append(QString::number(snowrem));
 
