@@ -27,10 +27,10 @@ void levelSelector::paintEvent(QPaintEvent *) {
 	 painter.drawImage(rect,QImage(":/images/resources/backdrop_winter.png"));
 	 break;
       case 1:
-	 painter.drawImage(rect,QImage(":/images/resources/backdrop_winter.png"));
+	 painter.drawImage(rect,QImage(":/images/resources/backdrop_spring.png"));
 	 break;
       case 2:
-	 painter.drawImage(rect,QImage(":/images/resources/backdrop_winter.png"));
+	 painter.drawImage(rect,QImage(":/images/resources/backdrop_summer.png"));
 	 break;
    }
    

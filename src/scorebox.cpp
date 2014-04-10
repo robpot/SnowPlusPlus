@@ -39,9 +39,11 @@ void scorebox::snowmanClicked() {
    }
 }
 void scorebox::timeout() {
+   timeElapsed->stop();
    emit gameOver(0, flakeCount);
 }
 
 void scorebox::allCorrect(){
+   timeElapsed->stop();
    emit gameOver(lcdTimer->getTimeRemaining(), flakeCount+1);
 }

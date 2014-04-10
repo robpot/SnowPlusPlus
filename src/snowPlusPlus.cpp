@@ -52,7 +52,6 @@ void snowPlusPlus::paintEvent(QPaintEvent *){
     painter.drawRect(1,1 , width()-2, height()-2);
 }
 
-
 void snowPlusPlus::gameEnd(const int &timeRem, const int &snowRem){
    emit showGameOver(0,timeRem,snowRem,difficulty);
 }
