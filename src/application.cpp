@@ -10,7 +10,6 @@ application::application(QWidget *parent) : QWidget(parent)
 }
 void application::hideInstructions(){
    instructions->hide();
-   
 }
 
 void application::showLevelSelect(){
@@ -34,8 +33,10 @@ void application::gameOver(int base, int timerem, int snowrem, int diff){
    game->hide();
    gameover->show();
    connect(gameover,SIGNAL(restart()),this,SLOT(hideGameOver()));
-   connect(gameover,SIGNAL(restart()),this,SLOT(showLevelSelect()));
+   
 }
 void application::hideGameOver(){
-   gameover->hide();
+   delete chooser;
+   gameover->hide(); 
+   showLevelSelect();
 }

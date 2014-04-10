@@ -39,6 +39,7 @@ void levelSelector::paintEvent(QPaintEvent *) {
 
 void levelSelector::difficultySelected(int diff) {
    difficulty = diff;
+
    switch(diff) {
       case 0:
 	 directory->setPath("levels/easy");
@@ -50,8 +51,9 @@ void levelSelector::difficultySelected(int diff) {
 	 directory->setPath("levels/hard");
 	 break;
       default:
-	 directory->setPath("levels");
+	 directory->setPath("levels"); 
    }
+
    QFileInfoList fileList;
    QStringList filters;
    filters<<"*.txt";
@@ -59,7 +61,6 @@ void levelSelector::difficultySelected(int diff) {
    list.clear();
    for(int i=0; i<fileList.size(); i++){
       list<<fileList[i].baseName();
-      qDebug()<<fileList[i].baseName();
    }
    list.removeDuplicates();
 
@@ -73,15 +74,16 @@ void levelSelector::difficultySelected(int diff) {
 void levelSelector::lvlSelected(QString s) {
    switch(difficulty) {
       case 0:
-	 s = "easy/" + s;
+	 s = "levels/easy/" + s;
 	 break;
       case 1:
-	 s = "medium/" + s;
+	 s = "levels/medium/" + s;
 	 break;
       case 2:
-	 s = "hard/" + s;
+	 s = "levels/hard/" + s;
 	 break;
    }
    s += ".txt";
    emit levelSelected(s);
+   emit reset();
 }

@@ -218,7 +218,7 @@ QString parser::cutEnds(QString data){
 
 void parser::loadLevel(QString file){
    QFile* data =  new QFile();
-   QDir::setCurrent(QDir::currentPath() + "/levels");
+   QDir::setCurrent(QDir::currentPath());
   
    data->setFileName(file);
    

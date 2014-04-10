@@ -15,6 +15,7 @@ public:
 public slots:
    void diffSelected(int);
    void backButton();
+   void reset();
 private:
    difficultySelector* diffSelector;
    levelSelector* levSelector;

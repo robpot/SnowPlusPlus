@@ -31,6 +31,8 @@ private:
 signals:
    void levelSelected(QString);
    void backButton();
+   void reset();
+
 };
 
 

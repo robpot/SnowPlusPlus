@@ -12,8 +12,14 @@ levelChooser::levelChooser(QWidget *parent) : QWidget(parent) {
    connect(diffSelector, SIGNAL(difficultySelected(int)), levSelector, SLOT(difficultySelected(int)));
    connect(diffSelector, SIGNAL(difficultySelected(int)), this, SLOT(diffSelected(int)));
    connect(levSelector, SIGNAL(levelSelected(QString)), this, SIGNAL(levelSelected(QString)));
+   connect(levSelector, SIGNAL(reset()), this, SLOT(reset()));
+   
    connect(levSelector, SIGNAL(backButton()), this, SLOT(backButton()));
    showHide();
+}
+void levelChooser::reset(){
+   dSelected = false;
+   
 }
 
 void levelChooser::diffSelected(int) {
