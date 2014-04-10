@@ -128,7 +128,8 @@ void instructionScreen::progress()
     case 16:
       frame->setPixmap(QPixmap(":images/resources/tut11.png"));
       break;
-    default:
+     default:
+	emit close();
       break;
   }
 }

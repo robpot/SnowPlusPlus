@@ -59,6 +59,7 @@ void levelSelector::difficultySelected(int diff) {
    list.clear();
    for(int i=0; i<fileList.size(); i++){
       list<<fileList[i].baseName();
+      qDebug()<<fileList[i].baseName();
    }
    list.removeDuplicates();
 

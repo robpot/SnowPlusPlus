@@ -114,7 +114,7 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
       lvl.hints.push_back(goTillEndTag(data,tag,pos,jump));
    }
    if(tag == "<Description>"){
-      //lvl.desc = goTillEndTag(data,pos,jump);
+      lvl.desc = goTillEndTag(data,tag,pos,jump);
    }
    if(tag == "<Difficulty>"){
       lvl.diff =  goTillEndTag(data,tag,pos,jump);

@@ -4,6 +4,7 @@ gameOverWrapper::gameOverWrapper(QWidget *parent, int base, int timerem, int sno
    : QWidget(parent)
 {
    screen=new gameOverScreen(this,base,timerem,snowrem,dif);
+   connect(screen,SIGNAL(sendexit()),this,SIGNAL(restart()));
    view=new QGraphicsView(screen);
 
    QVBoxLayout *vlayout=new QVBoxLayout(this);

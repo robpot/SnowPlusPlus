@@ -9,7 +9,7 @@ class messageBox :public QWidget{
     Q_OBJECT
 
 public:
-   messageBox(QWidget *parent=0);
+   messageBox(QString des,QWidget *parent=0);
 public slots:
    void catchMessage(const QString &str);
    void gameEnd();

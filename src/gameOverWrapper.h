@@ -15,6 +15,9 @@ class gameOverWrapper : public QWidget
   private:
    QGraphicsView *view;
    gameOverScreen *screen;
+
+  signals:
+   void restart();
    
 
 };

@@ -3,13 +3,24 @@
 
 application::application(QWidget *parent) : QWidget(parent)
 {
+   instructions=new instructionWrapper(this);
+   connect(instructions,SIGNAL(close()),this,SLOT(hideInstructions()));
+   connect(instructions,SIGNAL(close()),this,SLOT(showLevelSelect()));
+   
+}
+void application::hideInstructions(){
+   instructions->hide();
+   
+}
+
+void application::showLevelSelect(){
    chooser = new levelChooser(this);
+   chooser->show();
    parse = new parser();
    setFixedSize(1024,576);
    connect(chooser, SIGNAL(levelSelected(QString)), parse, SLOT(loadLevel(QString)));
    connect(chooser, SIGNAL(levelSelected(QString)), this, SLOT(levelSelected(QString)));
-   
- }
+}
 
 void application::levelSelected(QString s) {
    //it does stuff with the string
@@ -22,4 +33,9 @@ void application::gameOver(int base, int timerem, int snowrem, int diff){
    gameover=new gameOverWrapper(this,base,timerem,snowrem,diff);
    game->hide();
    gameover->show();
+   connect(gameover,SIGNAL(restart()),this,SLOT(hideGameOver()));
+   connect(gameover,SIGNAL(restart()),this,SLOT(showLevelSelect()));
+}
+void application::hideGameOver(){
+   gameover->hide();
 }

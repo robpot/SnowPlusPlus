@@ -3,6 +3,7 @@
 //snowPlusPlus.cpp
 
 #include "snowPlusPlus.h"
+#include <QDebug>
 
 //builds the sub QWidgets that are displayed for the game. 
 snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
@@ -20,7 +21,7 @@ snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){
    palette = new blockPalette(lvl,this);
    palette->setDragStorage(storage);
    frame = new codeFrame(lvl,this,storage);
-   message = new messageBox(this);
+   message = new messageBox(lvl.desc,this);
    snow = new snowman(this,timeLimit->minute(),timeLimit->second());
    score = new scorebox(this,timeLimit->minute(),timeLimit->second());
    goScreen = NULL;
