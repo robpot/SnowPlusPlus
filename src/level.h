@@ -17,6 +17,8 @@ class level {
    QString diff;
    //Level Name
    QString name;
+   //level description
+   QString description;
    //Ordered List (Defines the order of apperance)
    QList<QString> ordered;
    //Map of code blocks
