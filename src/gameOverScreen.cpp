@@ -35,7 +35,22 @@ gameOverScreen::gameOverScreen(QWidget *parent, int base, int timerem, int snowr
   snowman = new QGraphicsPixmapItem();
   snowman->setPixmap(QPixmap(":/images/resources/frostyhorse.png"));
   backdrop = new QGraphicsPixmapItem();
-  backdrop->setPixmap(QPixmap(":/images/resources/backdrop_winter.png"));
+  switch(dif)
+  {
+    case 0:
+      backdrop->setPixmap(QPixmap(":/images/resources/backdrop_winter.png"));
+      break;
+    case 1:
+      backdrop->setPixmap(QPixmap(":/images/resources/backdrop_spring.png"));
+      break;
+    case 2:
+      backdrop->setPixmap(QPixmap(":/images/resources/backdrop_summer.png"));
+      break;
+    default:
+      backdrop->setPixmap(QPixmap(":/images/resources/backdrop_winter.png"));
+      break;
+  }
+
   scorebanner = new QGraphicsPixmapItem();
   scorebanner->setPixmap(QPixmap(":/images/resources/scorebanner.png"));
   goodjobbubble = new QGraphicsPixmapItem();

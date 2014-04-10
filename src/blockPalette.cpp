@@ -14,8 +14,8 @@
 blockPalette::blockPalette(level lvl, QWidget *parent) : QWidget(parent){
    setFixedSize(205, 576);
    setAcceptDrops(true);
-   top_arrow = new QImage(":/images/resources/arrow.png");
-   bottom_arrow = new QImage(":/images/resources/arrow.png");
+   top_arrow = new QImage(":/images/resources/arrow2.png");
+   bottom_arrow = new QImage(":/images/resources/arrow2.png");
    *bottom_arrow = bottom_arrow->mirrored(true,true);
    number = 15;
    block_per_page = 7;
@@ -87,8 +87,29 @@ void blockPalette::paintEvent(QPaintEvent *){
    QRect bot_arr((width()/2)-16,height()-36,bottom_arrow->width(),bottom_arrow->height());
    painter.setOpacity(0.8);
    painter.drawImage(rect,QImage(":/images/resources/blockpalette.png"));
-   painter.drawImage(top_arr,*top_arrow);
-   painter.drawImage(bot_arr,*bottom_arrow);
+   if(total_pages == 1)
+   {
+     painter.drawImage(top_arr,*top_arrow);
+     painter.drawImage(bot_arr,*bottom_arrow);
+   }
+   else
+   {
+     if(current_page == 1)
+       top_arrow->load(":/images/resources/arrow2.png");
+     else
+       top_arrow->load(":/images/resources/arrow.png");
+     if(current_page == total_pages){
+       bottom_arrow->load(":/images/resources/arrow2.png");
+
+     *bottom_arrow = bottom_arrow->mirrored(true,true);}
+     else{
+
+       bottom_arrow->load(":/images/resources/arrow.png");
+       *bottom_arrow = bottom_arrow->mirrored(true,true);
+       }
+     painter.drawImage(top_arr,*top_arrow);
+     painter.drawImage(bot_arr,*bottom_arrow);
+   }
 }
 
 // Determines if the mouse presses the left button on the arrows
@@ -103,6 +124,7 @@ void blockPalette::mousePressEvent(QMouseEvent *event) {
 	 {
 	    --current_page;
 	    setPage(current_page);
+	    update();
 	 }
       }
       else if(event->pos().y() > (height()-bottom_arrow->height()-8))
@@ -111,6 +133,7 @@ void blockPalette::mousePressEvent(QMouseEvent *event) {
 	 {
 	    ++current_page;
 	    setPage(current_page);
+	    update();
 	 }
       }
    }

@@ -39,6 +39,6 @@ void application::gameOver(int base, int timerem, int snowrem, int diff){
 }
 void application::hideGameOver(){
    delete chooser;
-   gameover->hide(); 
+   gameover->hide();
    showLevelSelect();
 }
