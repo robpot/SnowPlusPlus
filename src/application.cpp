@@ -3,6 +3,8 @@
 
 application::application(QWidget *parent) : QWidget(parent)
 {
+
+   setFixedSize(1024,576);
    instructions=new instructionWrapper(this);
    connect(instructions,SIGNAL(close()),this,SLOT(hideInstructions()));
    connect(instructions,SIGNAL(close()),this,SLOT(showLevelSelect()));
