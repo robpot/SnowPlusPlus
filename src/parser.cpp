@@ -2,7 +2,6 @@
 //Spring 2014
 //Parser.cpp
 #include "parser.h"
-#include <QDebug>
 #include <QStringList>
 #include <QDir>
 parser::parser(QObject *o) : QObject(o){
@@ -86,7 +85,6 @@ void parser::tagHandler(QString data, QString tag, int pos, int &jump){
 	
       }
       if(extraParse){ // extras not being used this sprint
-	 //qDebug() << goTillEndTag(data,tag,pos,jump);
       }
    }
    if(tag == "<Level>"){

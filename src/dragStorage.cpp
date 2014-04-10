@@ -6,8 +6,6 @@
 //
 
 #include "dragStorage.h"
-#include <QDebug>
-
 
 dragStorage::dragStorage(QWidget *parent) :
   QWidget(parent)

@@ -9,7 +9,6 @@
 #include <QWidget>
 #include <QPainter>
 #include <math.h>
-#include <QDebug>
 #include <QMouseEvent>
 #include "codeBlock.h"
 #include "dragStorage.h"

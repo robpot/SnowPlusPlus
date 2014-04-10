@@ -3,7 +3,7 @@
 // This displays the game over screen with the score , time remaining,
 // and snowflakes remaining.
 #include "gameOverScreen.h"
-#include <QDebug>
+
 gameOverScreen::gameOverScreen(QWidget *parent, int base, int timerem, int snowrem, int dif)
   : QGraphicsScene(parent)
 {
@@ -62,7 +62,6 @@ gameOverScreen::gameOverScreen(QWidget *parent, int base, int timerem, int snowr
   scorefinaly = 31;
   scorestartx = 31;
   scorestarty = -scorebanner->pixmap().height();
-  qDebug()<<scorestarty;
 
   scorebanner->setPos(scorestartx,scorestarty);
   addItem(scorebanner);

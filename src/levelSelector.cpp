@@ -1,6 +1,5 @@
 //levelselector.cpp
 #include "levelSelector.h"
-#include <QDebug>
 #include <math.h>
 
 levelSelector::levelSelector(QWidget *parent) : QWidget(parent){

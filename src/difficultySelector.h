@@ -9,7 +9,6 @@
 #include <QLayoutItem>
 #include <QSpacerItem>
 #include "difficultyBlock.h"
-#include <QDebug>
 #include <QMouseEvent>
 
 class difficultySelector :public QWidget {

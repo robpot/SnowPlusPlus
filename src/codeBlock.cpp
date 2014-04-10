@@ -3,7 +3,7 @@
 //codeBlock.cpp
 
 #include "codeBlock.h"
-#include <QDebug>
+
 // Constructor that creates the codeblock, with each code block
 // having the blockId and the text within the block.
 // Connects to relevent parents upon signals

@@ -4,7 +4,6 @@
 // 
 // Paints the scenes in the difficulty choice screen.
 #include "difficultyBlock.h"
-#include <QDebug>
 
 difficultyBlock::difficultyBlock(QString textVal, int blockDiff, QWidget *parent) : QWidget(parent) {
    setFixedSize(700, 100);

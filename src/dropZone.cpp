@@ -1,6 +1,5 @@
 //dropZone.cpp
 #include "dropZone.h"
-#include <QDebug>
 
 dropZone::dropZone(QString s, int i ,QWidget *p) : QWidget(p)
 {
@@ -55,7 +54,6 @@ void dropZone::dragLeaveEvent(QDragLeaveEvent *event)
 
 void dropZone::dropEvent(QDropEvent *event)
 {
-   //qDebug() << "Drag into Drop";
    setGeometry(x(),y(),432,12*drag->getCurrent()->getNumLines()+5*drag->getCurrent()->getNumLines());
    emit newSize();
    if(block != NULL)
@@ -69,14 +67,12 @@ void dropZone::dropEvent(QDropEvent *event)
 
 void dropZone::mousePressEvent(QMouseEvent *event)
 {
-   //qDebug() << "zone mousePress";
    if(event->buttons() == Qt::LeftButton)
       drag->setBlock(block);
 }
 
 void dropZone::mouseReleaseEvent(QMouseEvent *event)
 {
-   //qDebug() << "release event";
    if(event->buttons() == Qt::LeftButton)
       drag->setBlock(NULL);
 }
@@ -104,7 +100,6 @@ bool dropZone::correctness(){
    if(block == NULL){
       return false;
    }else{
-      qDebug() <<text << "My ID ?= Held ID" << block->getRealID();
       if(block->getRealID() == ID){
 	 return true;
       }else{

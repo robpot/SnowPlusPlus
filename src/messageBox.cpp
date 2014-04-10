@@ -1,7 +1,6 @@
 //messageBox.cpp
 
 #include "messageBox.h"
-#include <QDebug>
 #include <QFontMetrics>
 
 messageBox::messageBox(QString des,QWidget *parent) : QWidget(parent){

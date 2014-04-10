@@ -3,7 +3,6 @@
 //snowPlusPlus.cpp
 
 #include "snowPlusPlus.h"
-#include <QDebug>
 
 //builds the sub QWidgets that are displayed for the game. 
 snowPlusPlus::snowPlusPlus(level lvl,QWidget *parent) : QWidget(parent){

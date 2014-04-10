@@ -4,7 +4,6 @@
 #include "codeFrame.h"
 #include <QVBoxLayout>
 #include <cmath>
-#include <QDebug>
 //Constructor for the code frame. Accepts a list of strings.
 //Total space for blocks is 3 columns 7 rows.
 

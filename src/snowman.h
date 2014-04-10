@@ -13,7 +13,6 @@
 #include <QTime>
 #include <QImage>
 #include <QMessageBox>
-#include <QDebug>
 
 class snowman :public QWidget{
     Q_OBJECT

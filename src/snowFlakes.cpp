@@ -1,5 +1,4 @@
 #include "snowFlakes.h"
-#include <QDebug>
 
 SnowFlakes::SnowFlakes(int l, QWidget *parent){
    setFixedSize(190,76);

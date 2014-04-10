@@ -1,5 +1,4 @@
 #include "instructionScreen.h"
-#include <QDebug>
 
 instructionScreen::instructionScreen(QWidget *parent) :
   QGraphicsScene(parent)
